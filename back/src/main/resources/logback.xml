@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="error"/>
+    <springProfile name="local">
+        <logger name="kr.co.gws" level="debug"/>
+    </springProfile>
+    <springProfile name="dev">
+        <logger name="kr.co.gws" level="debug"/>
+    </springProfile>
+    <springProfile name="prod">
+        <logger name="kr.co.gws" level="debug"/>
+    </springProfile>
+
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger name="jdbc" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="OFF"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.connection" level="OFF"/>
+    <logger name="o.s.w.s.m.SubProtocolWebSocketHandler" level="OFF"/>
+
+    <springProfile name="local">
+        <logger name="jdbc.sqltiming" level="DEBUG"/>
+        <logger name="jdbc.resultsettable" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="dev">
+        <logger name="jdbc.sqltiming" level="OFF"/>
+        <logger name="jdbc.resultsettable" level="OFF"/>
+    </springProfile>
+    <springProfile name="prod">
+        <logger name="jdbc.sqltiming" level="OFF"/>
+        <logger name="jdbc.resultsettable" level="OFF"/>
+    </springProfile>
+
+</configuration>
