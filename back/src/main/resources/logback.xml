@@ -8,13 +8,10 @@
 
     <logger name="org.springframework" level="error"/>
     <springProfile name="local">
-        <logger name="kr.co.gws" level="debug"/>
-    </springProfile>
-    <springProfile name="dev">
-        <logger name="kr.co.gws" level="debug"/>
+        <logger name="co.kr.sharek" level="debug"/>
     </springProfile>
     <springProfile name="prod">
-        <logger name="kr.co.gws" level="debug"/>
+        <logger name="co.kr.sharek" level="debug"/>
     </springProfile>
 
 
@@ -33,10 +30,6 @@
     <springProfile name="local">
         <logger name="jdbc.sqltiming" level="DEBUG"/>
         <logger name="jdbc.resultsettable" level="DEBUG"/>
-    </springProfile>
-    <springProfile name="dev">
-        <logger name="jdbc.sqltiming" level="OFF"/>
-        <logger name="jdbc.resultsettable" level="OFF"/>
     </springProfile>
     <springProfile name="prod">
         <logger name="jdbc.sqltiming" level="OFF"/>
