@@ -7,7 +7,7 @@ const webpackMode = process.env.NODE_ENV || 'development';
 
 module.exports = {
   mode: webpackMode,
-  entry: ['@babel/polyfill', './src/index.tsx'],
+  entry: ['./src/index.tsx'],
   output: {
     path: path.resolve('./build'),
     filename: '[name].min.js',
@@ -28,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        loader: 'babel-loader',
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {

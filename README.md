@@ -7,19 +7,19 @@
 ## Extentions
 + front ( VSCODE )
 ```
-- Auto Import - ES6, TS, JSX, TSX
-- ES7, Webpack, Babel
+- Auto Import - TS, TSX
+- ES2021, Webpack, Babel, Eslint
 - Prettier - Code formatter
 - vscode-styled-components, tailwind
 ```
 
 + back ( IntelliJ, sts )
 ```
- - Free Mybatis plugin
 ```
 
 ## Build
 + front
 ```
+npm install
 npm start
 ```
