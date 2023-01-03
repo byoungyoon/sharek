@@ -1,22 +1,14 @@
-mybatis:
-  mapper-locations: mapper/*/*.xml
-  configuration:
-    call-setters-on-nulls: true
-    map-underscore-to-camel-case: true
-spring:
-  datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    hikari:
-      connection-timeout: 50000
-
----
-
 spring:
   profiles:
-    active: prod
+    default: dev
 
----
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        format_sql: true
+#    show-sql: true
 
-spring:
-  profiles:
-    active: local
+logging:
+  config: classpath:log4j2.xml
