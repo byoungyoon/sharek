@@ -30,13 +30,10 @@ public class HtmlEscapingObjectMapperFactory implements FactoryBean<ObjectMapper
         return ObjectMapper.class;
     }
 
-
-
     @Override
     public boolean isSingleton() {
         return true;
     }
-
 
     /**
      * XSS filter
@@ -65,7 +62,15 @@ public class HtmlEscapingObjectMapperFactory implements FactoryBean<ObjectMapper
         // and this for others; we don't need anything special here
         @Override
         public SerializableString getEscapeSequence(int ch) {
-            return new SerializedString(StringEscapeUtils.escapeHtml4(Character.toString((char) ch)));
+            char charAt = (char) ch;
+            if (Character.isHighSurrogate(charAt) || Character.isLowSurrogate(charAt)) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("\\u");
+                sb.append(String.format("%04x", ch));
+                return new SerializedString(sb.toString());
+            } else {
+                return new SerializedString(StringEscapeUtils.escapeHtml4(Character.toString(charAt)));
+            }
         }
     }
 }
