@@ -2,6 +2,7 @@ package co.kr.sharek.config.config;
 
 import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,8 +20,10 @@ public class WebConfig implements WebMvcConfigurer {
 
   /**
    * XSS Filter
+   * lucy-xss-servlet-filter-rule.xml 파일 필수
    * @return
    */
+  @Bean
   public FilterRegistrationBean<XssEscapeServletFilter> getFilterRegistrationBean(){
     FilterRegistrationBean<XssEscapeServletFilter> registrationBean = new FilterRegistrationBean<>();
     registrationBean.setFilter(new XssEscapeServletFilter());
