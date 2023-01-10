@@ -41,7 +41,7 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|otf)$/,
         loader: 'file-loader',
       },
       {
