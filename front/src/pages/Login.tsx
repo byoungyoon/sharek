@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Input } from '../components/atoms';
+import { Input } from '@components/atoms';
 
 export const Login = () => {
   const [color, setColor] = useState('light');

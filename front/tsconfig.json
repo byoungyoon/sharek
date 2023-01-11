@@ -1,24 +1,22 @@
 {
+  "extends": "./tsconfig.extend.json",
   "compilerOptions": {
-    "outDir": "./build",
     "target": "ES2021",
-    "module": "esnext",
-    "jsx": "react-jsx",
-    "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src/**/*", "*.config.js"],
+  "exclude": ["node_modules"]
 }

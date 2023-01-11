@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
-import { persistentStorage } from '@/utils';
+import { persistentStorage } from '@utils/index';
 
 const webpackMode = process.env.NODE_ENV || 'development';
 

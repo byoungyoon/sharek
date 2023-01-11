@@ -14,10 +14,15 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '../src/'),
-    },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+    },
   },
   devServer: {
     liveReload: true,
