@@ -5,10 +5,10 @@ import { element } from './route';
 
 import './index.css';
 
-function App() {
+const App = () => {
   const routes = useRoutes(element);
 
-  return <>{routes}</>;
-}
+  return <div>{routes}</div>;
+};
 
 export default App;

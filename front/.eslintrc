@@ -35,6 +35,9 @@
     "react/prop-types": 0,
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "jsx-a11y/no-noninteractive-element-interactions": 0,
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

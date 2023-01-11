@@ -8,7 +8,7 @@ const proURL = 'localhost:9096'; // TODO 배포 서버 미정
 
 const baseURL = webpackMode === 'development' ? devURL : proURL;
 const option = axios.create({
-  baseURL: baseURL,
+  baseURL,
   headers: {
     'Content-type': 'application/json; charset=utf-8',
   },
@@ -26,7 +26,9 @@ const onReqToAuth = (config: AxiosRequestConfig) => {
     throw new Error();
   }
 
+  // eslint-disable-next-line
   config.headers = config.headers ?? {};
+  // eslint-disable-next-line
   (config.headers as RawAxiosRequestHeaders).Authorization = `Bearer ${user.token}`;
 
   return config;
@@ -38,7 +40,9 @@ const onResToAuth = (response: AxiosResponse) => {
 };
 
 // response 받은 후 동작 에러 헨들러 (인가 필요한 서비스)
+// eslint-disable-next-line
 const onResErrorToAuth = (error: any) => {
+  // eslint-disable-next-line
   error.response = error.response ?? {};
 
   switch (error.response.status) {

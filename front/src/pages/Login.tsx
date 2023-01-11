@@ -10,13 +10,11 @@ export const Login = () => {
   });
 
   const handleClickButton = () => {
-    setColor((color) => (color === 'light' ? 'dark' : 'light'));
+    setColor(color === 'light' ? 'dark' : 'light');
   };
 
   const handleChangeValue = (test: string) => (event: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [test]: event.target.value });
-
-    console.log(test);
   };
 
   return (

@@ -1,24 +1,33 @@
 interface PersistentStorage {
   getItem(key: string): string | null;
-  setItem(key: string, value: any): void;
+  setItem<T>(key: string, value: T): void;
 }
 
 class LocalStorage implements PersistentStorage {
+  item: string;
+
+  constructor() {
+    this.item = '';
+  }
+
   getItem(key: string) {
     const item = localStorage.getItem(key);
-
     if (item === null || item === undefined) return null;
+
+    this.item = item;
 
     try {
       return JSON.parse(item);
-    } catch {}
-
-    return item;
+    } catch (error) {
+      return Promise.reject();
+    }
   }
 
-  setItem(key: string, value?: any) {
-    if (value) localStorage.removeItem(key);
-    else localStorage.setItem(key, JSON.stringify(value));
+  setItem<T>(key: string, value?: T) {
+    this.item = key;
+
+    if (value) localStorage.removeItem(this.item);
+    else localStorage.setItem(this.item, JSON.stringify(value));
   }
 }
 
