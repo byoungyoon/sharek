@@ -19,8 +19,12 @@ module.exports = {
       10: '2.5rem',
     },
     colors: {
-      myGray: '#BCBCBC',
-      myOrange: '#FDB728',
+      myGray: {
+        DEFAULT: '#BCBCBC',
+      },
+      myOrange: {
+        DEFAULT: '#FDB728',
+      },
     },
     fontFamily: {
       myBold: 'NotoKR-Bold',
