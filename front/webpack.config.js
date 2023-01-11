@@ -57,10 +57,13 @@ module.exports = {
       {
         test: /\.svg$/,
         use: [
+          'babel-loader',
           {
             loader: '@svgr/webpack',
             options: {
-              svgo: false,
+              typescript: true,
+              babel: false,
+              ext: 'tsx',
             },
           },
         ],
