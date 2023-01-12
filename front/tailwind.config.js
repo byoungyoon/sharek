@@ -21,9 +21,12 @@ module.exports = {
     colors: {
       myGray: {
         DEFAULT: '#BCBCBC',
+        light: '#D9D9D9',
       },
       myOrange: {
         DEFAULT: '#FDB728',
+        light: '#FFD174',
+        pale: '#FFECC6',
       },
     },
     fontFamily: {
