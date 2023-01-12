@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useRoutes } from 'react-router-dom';
+import { Link, useRoutes } from 'react-router-dom';
 import { element } from './route';
 
 import './index.css';
@@ -8,7 +8,15 @@ import './index.css';
 const App = () => {
   const routes = useRoutes(element);
 
-  return <div>{routes}</div>;
+  return (
+    <div>
+      <div>{routes}</div>
+      <div>
+        <Link to="/">home</Link>
+        <Link to="/login">login</Link>
+      </div>
+    </div>
+  );
 };
 
 export default App;

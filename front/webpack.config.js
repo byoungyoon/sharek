@@ -11,10 +11,9 @@ module.exports = {
   output: {
     path: path.resolve('./build'),
     filename: '[name].min.js',
-    publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
@@ -27,7 +26,6 @@ module.exports = {
   devServer: {
     liveReload: true,
     port: 9095,
-    historyApiFallback: true,
   },
   performance: {
     hints: false,
