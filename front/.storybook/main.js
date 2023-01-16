@@ -22,6 +22,15 @@ module.exports = {
       '@utils': path.resolve(__dirname, '../src/utils'),
     };
 
+    config.module.rules.forEach((rule) => {
+      if (!rule.oneOf) return;
+
+      rule.oneOf.unshift({
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      });
+    });
+
     return {
       ...config,
       plugins: config.plugins.filter((plugin) => {
