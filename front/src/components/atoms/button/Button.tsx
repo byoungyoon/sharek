@@ -1,9 +1,10 @@
 import React, { ChangeEvent } from 'react';
+import { MouseEvent } from 'react';
 
 interface ButtonProps {
   label: string;
   theme?: 'gray' | 'orange';
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Button = ({ label, theme = 'gray', ...prop }: ButtonProps) => {
@@ -13,7 +14,7 @@ export const Button = ({ label, theme = 'gray', ...prop }: ButtonProps) => {
     'border', // 1px
     `${borderColor}`,
     `${hoverColor}`,
-    'hover:text-[#FFFFFF]',
+    'hover:text-white',
     'focus:outline-none',
     'min-w-smBtn',
     'p-1.5',
@@ -21,5 +22,9 @@ export const Button = ({ label, theme = 'gray', ...prop }: ButtonProps) => {
     'rounded-md',
   ];
 
-  return <input type="button" value={label} className={classArr.join(' ')} {...prop} />;
+  return (
+    <button className={classArr.join(' ')} {...prop}>
+      {label}
+    </button>
+  );
 };

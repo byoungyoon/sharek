@@ -18,9 +18,5 @@ export const Login = () => {
     setValue({ ...value, [test]: event.target.value });
   };
 
-  return (
-    <div className={color}>
-      <SearchInput theme="orange" />
-    </div>
-  );
+  return <div className={color}></div>;
 };
