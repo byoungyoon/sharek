@@ -17,6 +17,9 @@ module.exports = {
       8: '2rem',
       9: '2.25rem',
       10: '2.5rem',
+      sm: '360px',
+      md: '480px',
+      lg: '640px',
     },
     colors: {
       myGray: {
@@ -35,8 +38,9 @@ module.exports = {
       myLight: 'NotoKR-Light',
     },
     screens: {
-      tablet: '640px',
-      desktop: '1280px',
+      tablet: { max: '640px' },
+      laptop: { min: '640px', max: '1280px' },
+      desktop: { min: '1280px' },
     },
   },
   plugins: [],

@@ -1,20 +1,20 @@
 import React from 'react';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Input } from '../components/atoms';
+import { SearchInput } from '@components/molecules';
 
 export default {
-  title: 'atoms/Input',
-  componet: Input,
+  title: 'molecules/SearchInput',
+  componet: SearchInput,
   argTypes: {
     theme: {
       options: ['gray', 'orange'],
       control: { type: 'radio' },
     },
   },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof SearchInput>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof SearchInput> = (args) => <SearchInput {...args} />;
 
 export const Gray = Template.bind({});
 

@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Input } from '@components/atoms';
+import { SearchInput } from '@components/molecules';
 
 export const Login = () => {
   const [color, setColor] = useState('light');
@@ -19,15 +20,7 @@ export const Login = () => {
 
   return (
     <div className={color}>
-      <div className="dark:text-myOrange-focus text-myOrange">123</div>
-      <div className="tablet:text-myGray desktop:text-myOrange">123</div>
-
-      <button type="button" onClick={handleClickButton}>
-        test
-      </button>
-
-      <Input label={value.test1} border="gray" onChange={handleChangeValue('test1')} />
-      <Input label={value.test2} border="gray" onChange={handleChangeValue('test2')} />
+      <SearchInput theme="orange" />
     </div>
   );
 };
