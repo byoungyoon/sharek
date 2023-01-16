@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
@@ -22,6 +24,7 @@ module.exports = {
       lg: '640px',
     },
     colors: {
+      ...colors,
       myGray: {
         DEFAULT: '#BCBCBC',
         light: '#D9D9D9',
