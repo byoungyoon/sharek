@@ -1,21 +1,21 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Avatar } from '../components/atoms';
+import { Avatar } from '@components/molecules';
 
 export default {
-  title: 'atoms/Avatar',
+  title: 'molecules/Avatar',
   componet: Avatar,
   argTypes: {
     isAvatar: {
-      options: ['none', 'avartar'],
+      options: ['none', 'avatar'],
     },
   },
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
 
-export const NoneAvatar = Template.bind({});
+export const None = Template.bind({});
 
-NoneAvatar.args = {
+None.args = {
   isAvatar: 'none',
 };

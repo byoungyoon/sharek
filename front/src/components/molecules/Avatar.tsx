@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 interface AvatarProps {
   isAvatar: 'none' | 'avatar';
