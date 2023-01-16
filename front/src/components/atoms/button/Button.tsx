@@ -1,13 +1,13 @@
-import React, { ChangeEvent } from 'react';
-import { MouseEvent } from 'react';
+import React, { ChangeEvent, CSSProperties, MouseEvent } from 'react';
 
 interface ButtonProps {
   label: string;
   theme?: 'gray' | 'orange';
+  style?: CSSProperties;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = ({ label, theme = 'gray', ...prop }: ButtonProps) => {
+export const Button = ({ label, theme = 'gray', onClick, ...prop }: ButtonProps) => {
   const borderColor = theme === 'gray' ? 'border-myGray text-myGray' : 'border-myOrange text-myOrange';
   const hoverColor = theme === 'gray' ? 'hover:bg-myGray' : 'hover:bg-myOrange';
   const classArr = [
