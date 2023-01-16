@@ -7,8 +7,8 @@ export default {
   title: 'atoms/Button',
   componet: Button,
   argTypes: {
-    background: {
-      options: ['orange', 'gray'],
+    theme: {
+      options: ['gray', 'orange'],
       control: { type: 'radio' },
     },
   },
@@ -19,13 +19,13 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Gray = Template.bind({});
 
 Gray.args = {
-  background: 'gray',
+  theme: 'gray',
   label: 'button',
 };
 
 export const Orange = Template.bind({});
 
 Orange.args = {
-  background: 'orange',
+  theme: 'orange',
   label: 'button',
 };

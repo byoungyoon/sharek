@@ -23,6 +23,9 @@ module.exports = {
       md: '480px',
       lg: '640px',
     },
+    minWidth: {
+      smBtn: '70px',
+    },
     colors: {
       ...colors,
       myGray: {
