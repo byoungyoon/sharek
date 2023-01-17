@@ -16,3 +16,9 @@
   font-family: 'NotoKR-Light';
   src: url('./constants/font/NotoSansKR-Light.otf');
 }
+
+@layer components {
+  * {
+    font-family: 'NotoKR-Light';
+  }
+}
