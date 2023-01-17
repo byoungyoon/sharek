@@ -5,6 +5,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     spacing: {
+      0: '0',
       0.5: '0.125rem',
       1: '0.25rem',
       1.5: '0.375rem',
@@ -19,12 +20,17 @@ module.exports = {
       8: '2rem',
       9: '2.25rem',
       10: '2.5rem',
-      sm: '360px',
-      md: '480px',
-      lg: '640px',
     },
     minWidth: {
       smBtn: '70px',
+      lg: '640px',
+      md: '400px',
+      sm: '160px',
+    },
+    maxWidth: {
+      lg: '640px',
+      md: '400px',
+      sm: '160px',
     },
     colors: {
       ...colors,

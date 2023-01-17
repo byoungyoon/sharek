@@ -4,11 +4,11 @@ import { Input } from '@components/atoms';
 
 interface SearchInputProps {
   theme?: 'gray' | 'orange';
-  onKeyPress: (value: string) => void;
+  onKeyPress?: (value: string) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { theme = 'gray', onKeyPress, ...prop } = props;
+  const { theme = 'gray', onKeyPress = () => {}, ...prop } = props;
 
   const borderColor = useMemo(() => (theme === 'gray' ? 'fill-myGray' : 'fill-myOrange'), [theme]);
   const target = useRef<HTMLInputElement>(null);
@@ -24,7 +24,7 @@ export const SearchInput = (props: SearchInputProps) => {
   };
 
   return (
-    <div className="relative tablet:w-full laptop:w-lg desktop:w-lg">
+    <div className="relative tablet:w-full laptop:max-w-lg desktop:max-w-lg">
       <div className="absolute top-2 right-2">
         <Search className={borderColor} width="24" height="24" />
       </div>
