@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class PostResponseDto {
   private Long id;
   private String title;
-  private String wirter;
+  private String writer;
   private String content;
   private String image;
   private Long vote;

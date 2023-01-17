@@ -53,7 +53,7 @@ public class PostServiceTest {
   void find_post() {
     PostResponseDto post = postService.detailPostById(1L);
 
-    assertThat(post.getWirter()).isEqualTo(POST_WRITER);
+    assertThat(post.getWriter()).isEqualTo(POST_WRITER);
     assertThat(post.getTitle()).isEqualTo(POST_TITLE);
   }
 
