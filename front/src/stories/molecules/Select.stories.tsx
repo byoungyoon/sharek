@@ -23,6 +23,16 @@ const sample: Array<dataTypes> = [
   { label: 'label5', value: 'value5' },
   { label: 'label6', value: 'value6' },
 ];
+
+const sample2: Array<dataTypes> = [
+  { label: 'label1', value: 'value1' },
+  { label: 'label2', value: 'value2', selectValue: true },
+  { label: 'label3', value: 'value3' },
+  { label: 'label4', value: 'value4' },
+  { label: 'label5', value: 'value5' },
+  { label: 'label6', value: 'value6' },
+];
+
 export const Gray = Template.bind({});
 
 Gray.args = {
@@ -35,4 +45,11 @@ export const Orange = Template.bind({});
 Orange.args = {
   theme: 'orange',
   data: sample,
+};
+
+export const SelectValue = Template.bind({});
+
+SelectValue.args = {
+  theme: 'gray',
+  data: sample2,
 };

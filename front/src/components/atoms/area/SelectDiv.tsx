@@ -23,7 +23,7 @@ export const SelectDiv = (props: TextDivProps) => {
     }
   };
 
-  const classArr = ['p-1.5', `${bgColor}`, 'hover:bg-myOrange-pale', `${isRounded()}`, 'cursor-pointer', 'break-all'];
+  const classArr = ['p-1.5', `${bgColor}`, 'hover:bg-myOrange-pale', `${isRounded()}`, 'break-all'];
 
   return (
     <div className={classArr.join(' ')} onClick={onClick(label, value)}>
