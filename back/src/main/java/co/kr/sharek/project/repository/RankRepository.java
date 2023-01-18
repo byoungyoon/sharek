@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RankRepository extends JpaRepository<Member, Long> {
-    List<MemberInfoMappingRepository> findAllBy();
+    List<RankMappingRepository> findAllBy();
 }

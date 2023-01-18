@@ -1,6 +1,7 @@
 package co.kr.sharek.project.dto;
 
 import co.kr.sharek.config.security.entity.Member;
+import co.kr.sharek.project.repository.RankMappingRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +28,17 @@ public class RankRequestDto {
         return new RankRequestDto(
                 member.getId(),
                 member.getPoint(),
-                member.getState(),
-                member.getNickname()
+                member.getNickname(),
+                member.getState()
+        );
+    }
+
+    public static RankRequestDto from(RankMappingRepository member){
+        return new RankRequestDto(
+                member.getId(),
+                member.getPoint(),
+                member.getNickname(),
+                member.getState()
         );
     }
 }
