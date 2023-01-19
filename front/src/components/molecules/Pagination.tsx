@@ -21,9 +21,9 @@ export const Pagination = (props: PaginationProps) => {
     pageNumbers.push(i);
   }
 
-  const result = pageNumbers.map((data) => (
+  const result = pageNumbers.map((pageNum) => (
     <span>
-      <PageDiv page={data} selected={data === currentPage} onClick={onclickPage} theme={theme} />
+      <PageDiv pageNum={pageNum} selected={pageNum === currentPage} onClick={onclickPage} theme={theme} />
     </span>
   ));
 

@@ -3,14 +3,14 @@ import { theme } from '../../../../tailwind.config';
 
 interface PageDivProps {
   theme?: 'gray' | 'orange';
-  page: number;
+  pageNum: number;
   // currentPage: string;
   selected: boolean;
-  onClick?: (page: number) => MouseEventHandler<HTMLDivElement>;
+  onClick?: (pageNum: number) => MouseEventHandler<HTMLDivElement>;
 }
 
 export const PageDiv = (props: PageDivProps) => {
-  const { theme = 'gray', page, selected, onClick = () => () => {}, ...prop } = props;
+  const { theme = 'gray', pageNum, selected, onClick = () => () => {}, ...prop } = props;
   let bgColor;
   if (theme === 'gray') {
     bgColor = selected ? 'bg-myGray-light' : 'bg-white';
@@ -36,8 +36,8 @@ export const PageDiv = (props: PageDivProps) => {
   ];
 
   return (
-    <div className={classArr.join(' ')} onClick={onClick(page)}>
-      {page}
+    <div className={classArr.join(' ')} onClick={onClick(pageNum)}>
+      {pageNum}
     </div>
   );
 };
