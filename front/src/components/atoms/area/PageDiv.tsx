@@ -1,10 +1,7 @@
 import React, { MouseEventHandler } from 'react';
-import { theme } from '../../../../tailwind.config';
-
 interface PageDivProps {
   theme?: 'gray' | 'orange';
   pageNum: number;
-  // currentPage: string;
   selected: boolean;
   onClick?: (pageNum: number) => MouseEventHandler<HTMLDivElement>;
 }

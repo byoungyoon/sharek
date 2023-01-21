@@ -20,8 +20,9 @@ export const Gray = Template.bind({});
 // 총 게시물 : 255
 Gray.args = {
   theme: 'gray',
-  perPage: '15',
-  total: '255',
+  perPage: 5,
+  total: 50,
+  pageRangeDisplayed: 5,
 };
 
 // 페이지 당 게시물 : 10
@@ -29,6 +30,7 @@ Gray.args = {
 export const Orange = Template.bind({});
 Orange.args = {
   theme: 'orange',
-  perPage: '10',
-  total: '143',
+  perPage: 10,
+  total: 143,
+  pageRangeDisplayed: 5,
 };
