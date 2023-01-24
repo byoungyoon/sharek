@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageDiv } from '@components/atoms/area/PageDiv';
+import { ButtonDiv } from '@components/atoms/area/ButtonDiv';
 
 export interface PaginationProps {
   theme?: 'gray' | 'orange';
@@ -12,8 +13,7 @@ export const Pagination = (props: PaginationProps) => {
   const { theme = 'gray', perPage, total, pageRangeDisplayed, ...prop } = props;
   const [currentPage, setCurrentPage] = useState<number>(1); // 선택한 페이지
   const [totalPageArray, setTotalPageArray] = useState<number[][]>([[]]);
-  // const [currentPageArray, setCurrentPageArray] = useState<number[]>([]);
-  const [pageStep, setPageStep] = useState<number>(0);
+  const [currentPageArray, setCurrentPageArray] = useState<number[]>([]);
   const endPage = Math.ceil(total / perPage);
 
   const onClickPage = (pageNum: number) => () => {
@@ -23,8 +23,10 @@ export const Pagination = (props: PaginationProps) => {
   useEffect(() => {
     const slicedPageArray = slicePageByLimit(endPage, pageRangeDisplayed);
     setTotalPageArray(slicedPageArray);
-    // setCurrentPageArray(slicedPageArray[pageStep]);
+    setCurrentPageArray(slicedPageArray[0]);
   }, []);
+
+  useEffect(() => {}, [currentPageArray]);
 
   // 이전, 다음을 위한 페이지 배열 짜르기
   const slicePageByLimit = (endPage: number, limit: number) => {
@@ -46,21 +48,34 @@ export const Pagination = (props: PaginationProps) => {
          *     [[1,2,3,4,5,6,7] , [1,2,3,4,5,6,7] , [1,2,3,4,5,6,7]]
          *     slice 의 index를 바꿔주며 짜르기 위해 위의 initial 변수를 사용
          */
-        const result = totalPageArray.slice(initial, initial + limit); //
+        const slicedPage = totalPageArray.slice(initial, initial + limit); //
         initial += limit;
-        return result;
+        return slicedPage;
       });
   };
 
-  const result = totalPageArray.map((array) =>
-    array.map((pageNum) => (
-      <PageDiv pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
-    )),
-  );
+  // 이전 다음 btn, 페이지 배열
+  const preBtnFn = () => () => {
+    const pageIndex = Math.floor(currentPageArray[0] / pageRangeDisplayed);
+    setCurrentPageArray(totalPageArray[pageIndex - 1]);
+  };
+
+  const nextBtnFn = () => () => {
+    const pageIndex = Math.floor(currentPageArray[0] / pageRangeDisplayed);
+    setCurrentPageArray(totalPageArray[pageIndex + 1]);
+  };
+
+  const result = currentPageArray.map((pageNum) => (
+    <PageDiv pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
+  ));
 
   return (
-    <div>
-      <div>{result}</div>
+    <div className="flex justify-center">
+      {currentPageArray[0] != 1 && <ButtonDiv label={'이전'} theme={theme} onClick={preBtnFn} />}
+      {result}
+      {currentPageArray[currentPageArray.length - 1] != endPage && (
+        <ButtonDiv label={'다음'} theme={theme} onClick={nextBtnFn} />
+      )}
     </div>
   );
 };
