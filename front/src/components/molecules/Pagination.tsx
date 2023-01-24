@@ -26,8 +26,6 @@ export const Pagination = (props: PaginationProps) => {
     setCurrentPageArray(slicedPageArray[0]);
   }, []);
 
-  useEffect(() => {}, [currentPageArray]);
-
   // 이전, 다음을 위한 페이지 배열 짜르기
   const slicePageByLimit = (endPage: number, limit: number) => {
     // 총 페이지 배열 생성
