@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageDiv } from '@components/atoms/area/PageDiv';
-import { ButtonDiv } from '@components/atoms/area/ButtonDiv';
+import { PreNextDiv } from '@components/atoms/area/PreNextDiv';
 
 export interface PaginationProps {
   theme?: 'gray' | 'orange';
@@ -71,10 +71,10 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <div className="flex justify-center">
-      {currentPageArray[0] != 1 && <ButtonDiv label={'이전'} theme={theme} onClick={preBtnFn} />}
+      {currentPageArray[0] != 1 && <PreNextDiv label={'이전'} theme={theme} onClick={preBtnFn} />}
       {result}
       {currentPageArray[currentPageArray.length - 1] != endPage && (
-        <ButtonDiv label={'다음'} theme={theme} onClick={nextBtnFn} />
+        <PreNextDiv label={'다음'} theme={theme} onClick={nextBtnFn} />
       )}
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { MouseEventHandler } from 'react';
-interface ButtonDivProps {
+interface PreNextDivProps {
   theme?: 'gray' | 'orange';
   label: '이전' | '다음';
   onClick?: () => MouseEventHandler<HTMLDivElement>;
 }
 
-export const ButtonDiv = (props: ButtonDivProps) => {
+export const PreNextDiv = (props: PreNextDivProps) => {
   const { theme = 'gray', label, onClick = () => () => {}, ...prop } = props;
   const classArr = [
     'w-13',

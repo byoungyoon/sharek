@@ -5,3 +5,4 @@ export * from './button/Button';
 
 export * from './area/SelectDiv';
 export * from './area/PageDiv';
+export * from './area/PreNextDiv';

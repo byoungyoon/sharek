@@ -16,12 +16,13 @@ const Template: ComponentStory<typeof Pagination> = (args) => <Pagination {...ar
 
 export const Gray = Template.bind({});
 
-// 페이지 당 게시물 : 15
-// 총 게시물 : 255
+// 페이지 당 게시물 : 10
+// 총 게시물 : 405
+// 페이지 단위 : 10
 Gray.args = {
   theme: 'gray',
   perPage: 10,
-  total: 794,
+  total: 405,
   pageRangeDisplayed: 10,
 };
 
@@ -31,6 +32,6 @@ export const Orange = Template.bind({});
 Orange.args = {
   theme: 'orange',
   perPage: 10,
-  total: 143,
+  total: 155,
   pageRangeDisplayed: 5,
 };
