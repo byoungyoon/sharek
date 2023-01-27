@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { PageDiv } from '@components/atoms/area/PageDiv';
 import { PreNextDiv } from '@components/atoms/area/PreNextDiv';
 
@@ -7,11 +7,13 @@ export interface PaginationProps {
   perPage: number;
   total: number;
   pageRangeDisplayed: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Pagination = (props: PaginationProps) => {
-  const { theme = 'gray', perPage, total, pageRangeDisplayed, ...prop } = props;
-  const [currentPage, setCurrentPage] = useState<number>(1); // 선택한 페이지
+  const { theme = 'gray', perPage, total, pageRangeDisplayed, currentPage = 1, setCurrentPage, ...prop } = props;
+  // const [currentPage, setCurrentPage] = useState<number>(1); // 선택한 페이지
   const [totalPageArray, setTotalPageArray] = useState<number[][]>([[]]);
   const [currentPageArray, setCurrentPageArray] = useState<number[]>([]);
   const endPage = Math.ceil(total / perPage);
