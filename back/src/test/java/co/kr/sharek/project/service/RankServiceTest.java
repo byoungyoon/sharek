@@ -1,7 +1,7 @@
 package co.kr.sharek.project.service;
 
 import co.kr.sharek.config.security.entity.Member;
-import co.kr.sharek.project.dto.RankRequestDto;
+import co.kr.sharek.project.repository.RankMappingRepository;
 import co.kr.sharek.project.repository.RankRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -35,6 +39,7 @@ class RankServiceTest {
                 .password("1234")
                 .state(state)
                 .build();
+
         rankRepository.save(member);
     }
 
@@ -44,16 +49,16 @@ class RankServiceTest {
 }
 
     @Test
-    void findAllBy() {
+    void 전체랭킹출력() {
+        Pageable pageable = PageRequest.of(0,20, Sort.Direction.DESC, "point");
+        Page<RankMappingRepository> page =  rankRepository.findAllBy(pageable);
+        System.out.println("Page Size : " + page.getSize());
+        System.out.println("Total Pages : " + page.getTotalPages());
+        System.out.println("Total Count : " + page.getTotalElements());
+        System.out.println("isNextPage : " + page.hasNext());
+        System.out.println("Next : " + page.nextPageable());
 
-        List<RankRequestDto> findRank = rankService.findAllBy();
-        RankRequestDto m = findRank.get(0);
-
-        System.out.println("State : " + m.getState());
-        System.out.println("Point : " + m.getPoint());
-        System.out.println("Id : " + m.getId());
-        System.out.println("Nickname : " + m.getNickname());
-        System.out.println("size : " + findRank.size());
-        assertThat(m.getNickname()).isEqualTo("nick");
+        List<RankMappingRepository> list = page.getContent();
+        list.forEach(System.out::println);
     }
 }
