@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class RankController {
     private final RankService rankService;
 
     @GetMapping("/rank")
-    public Page<RankMappingRepository> findAllBy(@PageableDefault(page = 0, size=20, sort="point", direction = Sort.Direction.DESC) Pageable pageable){
-        return rankService.findAllBy(pageable);
+    public ResponseEntity<Page<RankMappingRepository>> findAllBy(@PageableDefault(page = 0, size=20, sort="point", direction = Sort.Direction.DESC) Pageable pageable){
+        return ResponseEntity.ok(rankService.findAllBy(pageable));
     }
 }
