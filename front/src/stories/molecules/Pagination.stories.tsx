@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Pagination } from '@components/molecules';
 
-const [currentPage, setCurrentPage] = useState(1);
-
 export default {
   title: 'molecules/Pagination',
   componet: Pagination,
@@ -26,8 +24,6 @@ Gray.args = {
   perPage: 10,
   total: 405,
   pageRangeDisplayed: 10,
-  currentPage: currentPage,
-  setCurrentPage: setCurrentPage,
 };
 
 // 페이지 당 게시물 : 10
@@ -38,6 +34,4 @@ Orange.args = {
   perPage: 10,
   total: 155,
   pageRangeDisplayed: 5,
-  currentPage: currentPage,
-  setCurrentPage: setCurrentPage,
 };
