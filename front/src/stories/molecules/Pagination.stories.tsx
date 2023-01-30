@@ -22,8 +22,8 @@ export const Gray = Template.bind({});
 Gray.args = {
   theme: 'gray',
   perPage: 10,
-  total: 405,
-  pageRangeDisplayed: 10,
+  total: 299,
+  pageRangeDisplayed: 1,
 };
 
 // 페이지 당 게시물 : 10

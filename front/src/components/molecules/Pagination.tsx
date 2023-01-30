@@ -72,12 +72,22 @@ export const Pagination = (props: PaginationProps) => {
 
   // 이전 다음 btn, 페이지 배열
   const preBtnFn = () => () => {
-    const pageIndex = Math.floor(currentPageArray[0] / pageRangeDisplayed);
+    if (currentPageArray.length === 1) {
+      const pageIndex = Math.floor(currentPageArray[0] / limit) - 1;
+      setCurrentPageArray(totalPageArray[pageIndex - 1]);
+      return;
+    }
+    const pageIndex = Math.floor(currentPageArray[0] / limit);
     setCurrentPageArray(totalPageArray[pageIndex - 1]);
   };
 
   const nextBtnFn = () => () => {
-    const pageIndex = Math.floor(currentPageArray[0] / pageRangeDisplayed);
+    if (currentPageArray.length === 1) {
+      const pageIndex = Math.floor(currentPageArray[0] / limit) - 1;
+      setCurrentPageArray(totalPageArray[pageIndex + 1]);
+      return;
+    }
+    const pageIndex = Math.floor(currentPageArray[0] / limit);
     setCurrentPageArray(totalPageArray[pageIndex + 1]);
   };
 
