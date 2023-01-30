@@ -81,16 +81,14 @@ export const Pagination = (props: PaginationProps) => {
     setCurrentPageArray(totalPageArray[pageIndex + 1]);
   };
 
-  const result = useCallback(() => {
-    return currentPageArray.map((pageNum, index) => (
-      <PageDiv key={index} pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
-    ));
-  }, [currentPageArray]);
+  const result = currentPageArray.map((pageNum, index) => (
+    <PageDiv key={index} pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
+  ));
 
   return (
     <div className="flex justify-center">
       {currentPageArray[0] != 1 && <PreNextDiv label={'이전'} theme={theme} onClick={preBtnFn} />}
-      {result()}
+      {result}
       {currentPageArray[currentPageArray.length - 1] != endPage && (
         <PreNextDiv label={'다음'} theme={theme} onClick={nextBtnFn} />
       )}
