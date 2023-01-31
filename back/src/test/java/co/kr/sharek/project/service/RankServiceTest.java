@@ -50,8 +50,8 @@ class RankServiceTest {
 
     @Test
     void 전체랭킹출력() {
-        Pageable pageable = PageRequest.of(0,20, Sort.Direction.DESC, "point");
-        Page<RankMappingRepository> page =  rankRepository.findAllBy(pageable);
+        Pageable pageable = PageRequest.of(0,20);
+        Page<RankMappingRepository> page =  rankRepository.findByOrderByPointDesc(pageable);
         System.out.println("Page Size : " + page.getSize());
         System.out.println("Total Pages : " + page.getTotalPages());
         System.out.println("Total Count : " + page.getTotalElements());

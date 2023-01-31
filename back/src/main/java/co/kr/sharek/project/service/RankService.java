@@ -14,7 +14,7 @@ public class RankService {
     private final RankRepository rankRepository;
 
     @Transactional(readOnly = true)
-    public Page<RankMappingRepository> findAllBy(Pageable pageable) {
-        return rankRepository.findAllBy(pageable);
+    public Page<RankMappingRepository> findRank(Pageable pageable) {
+        return rankRepository.findByOrderByPointDesc(pageable);
     }
 }

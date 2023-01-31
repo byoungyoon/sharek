@@ -20,7 +20,7 @@ public class RankController {
     private final RankService rankService;
 
     @GetMapping("/rank")
-    public ResponseEntity<Page<RankMappingRepository>> findAllBy(@PageableDefault(page = 0, size=20, sort="point", direction = Sort.Direction.DESC) Pageable pageable){
-        return ResponseEntity.ok(rankService.findAllBy(pageable));
+    public ResponseEntity<Page<RankMappingRepository>> findRank(@PageableDefault(size=20) Pageable pageable){
+        return ResponseEntity.ok(rankService.findRank(pageable));
     }
 }

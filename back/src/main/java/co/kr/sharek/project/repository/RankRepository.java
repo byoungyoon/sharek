@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface RankRepository extends JpaRepository<Member, Long> {
-    Page<RankMappingRepository> findAllBy(Pageable pageable);
+    Page<RankMappingRepository> findByOrderByPointDesc(Pageable pageable);
 }
