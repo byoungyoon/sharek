@@ -1,6 +1,6 @@
 import React, { MouseEvent, MouseEventHandler } from 'react';
 
-interface TextDivProps {
+interface SelectDivProps {
   label: string;
   value: string;
   selected: boolean;
@@ -8,7 +8,7 @@ interface TextDivProps {
   onClick?: (label: string, value: string) => MouseEventHandler<HTMLDivElement>;
 }
 
-export const SelectDiv = (props: TextDivProps) => {
+export const SelectDiv = (props: SelectDivProps) => {
   const { label, value, selected, index, onClick = () => () => {} } = props;
 
   const bgColor = selected ? 'bg-myOrange-pale' : 'bg-white';
