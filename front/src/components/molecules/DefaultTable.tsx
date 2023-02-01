@@ -65,7 +65,7 @@ export const DefaultTable = (props: DefaultTableProps) => {
     });
 
     return header ? html : <></>;
-  }, [columns]);
+  }, [columns, header]);
 
   /**
    * tbody 출력
