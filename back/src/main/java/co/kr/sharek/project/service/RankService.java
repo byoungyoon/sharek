@@ -1,15 +1,12 @@
 package co.kr.sharek.project.service;
 
-import co.kr.sharek.project.dto.RankRequestDto;
-import co.kr.sharek.project.dto.RankResponseDto;
 import co.kr.sharek.project.repository.RankMappingRepository;
 import co.kr.sharek.project.repository.RankRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,11 +14,7 @@ public class RankService {
     private final RankRepository rankRepository;
 
     @Transactional(readOnly = true)
-    public List<RankRequestDto> findAllBy() {
-        List<RankMappingRepository> members = rankRepository.findAllBy();
-
-        return members.stream()
-                .map(RankRequestDto::from)
-                .collect(Collectors.toList());
+    public Page<RankMappingRepository> findRank(Pageable pageable) {
+        return rankRepository.findByOrderByPointDesc(pageable);
     }
 }
