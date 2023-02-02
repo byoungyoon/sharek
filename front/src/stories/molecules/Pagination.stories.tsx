@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Pagination } from '@components/molecules';
 

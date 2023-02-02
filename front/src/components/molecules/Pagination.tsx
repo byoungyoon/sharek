@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SetStateAction, Dispatch, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { PageDiv } from '@components/atoms/area/PageDiv';
 import { PreNextDiv } from '@components/atoms/area/PreNextDiv';
 
@@ -11,6 +11,32 @@ export interface PaginationProps {
   setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
+// 이전, 다음을 위한 페이지 배열 짜르기
+const slicePageByLimit = (endPage: number, limit: number) => {
+  // 총 페이지 배열 생성
+  const totalPageArray = Array(endPage)
+    .fill(0)
+    .map((_, idx) => idx + 1);
+
+  // 페이지 짤라주기
+  let initial = 0;
+  return Array(Math.ceil(endPage / limit)) // 짜르는 등분만큼의 비어있는 2차원 배열생성
+    .fill(0)
+    .map(() => {
+      /**
+       * 비어있는 2차원 배열에 총 페이지 배열을 각각 넣어줌
+       * ex) 총 7페이지를 최대 3개씩 보여준다
+       *     1 2 3 / 4 5 6 / 7 이므로 3개의 배열이 필요함
+       *     현재 array에는 아래와 같은 형식
+       *     [[1,2,3,4,5,6,7] , [1,2,3,4,5,6,7] , [1,2,3,4,5,6,7]]
+       *     slice 의 index를 바꿔주며 짜르기 위해 위의 initial 변수를 사용
+       */
+      const slicedPage = totalPageArray.slice(initial, initial + limit); //
+      initial += limit;
+      return slicedPage;
+    });
+};
+
 export const Pagination = (props: PaginationProps) => {
   const [sample, setSample] = useState(1); // 스토리북을 위한 샘플
 
@@ -21,7 +47,6 @@ export const Pagination = (props: PaginationProps) => {
     pageRangeDisplayed = 5,
     currentPage = sample,
     setCurrentPage = setSample,
-    ...prop
   } = props;
 
   const [totalPageArray, setTotalPageArray] = useState<number[][]>([[]]);
@@ -31,7 +56,7 @@ export const Pagination = (props: PaginationProps) => {
   const limit = useMemo(() => (pageRangeDisplayed < 1 ? 5 : pageRangeDisplayed), [pageRangeDisplayed]);
 
   const onClickPage = (pageNum: number) => () => {
-    setCurrentPage && setCurrentPage(pageNum);
+    setCurrentPage(pageNum);
   };
 
   useEffect(() => {
@@ -40,35 +65,6 @@ export const Pagination = (props: PaginationProps) => {
     setTotalPageArray(slicedPageArray);
     setCurrentPageArray(slicedPageArray[0]);
   }, [endPage, limit]);
-
-  // 이전, 다음을 위한 페이지 배열 짜르기
-  const slicePageByLimit = useCallback(
-    (endPage: number, limit: number) => {
-      // 총 페이지 배열 생성
-      const totalPageArray = Array(endPage)
-        .fill(0)
-        .map((_, idx) => idx + 1);
-
-      // 페이지 짤라주기
-      let initial = 0;
-      return Array(Math.ceil(endPage / limit)) // 짜르는 등분만큼의 비어있는 2차원 배열생성
-        .fill(0)
-        .map(() => {
-          /**
-           * 비어있는 2차원 배열에 총 페이지 배열을 각각 넣어줌
-           * ex) 총 7페이지를 최대 3개씩 보여준다
-           *     1 2 3 / 4 5 6 / 7 이므로 3개의 배열이 필요함
-           *     현재 array에는 아래와 같은 형식
-           *     [[1,2,3,4,5,6,7] , [1,2,3,4,5,6,7] , [1,2,3,4,5,6,7]]
-           *     slice 의 index를 바꿔주며 짜르기 위해 위의 initial 변수를 사용
-           */
-          const slicedPage = totalPageArray.slice(initial, initial + limit); //
-          initial += limit;
-          return slicedPage;
-        });
-    },
-    [endPage, limit],
-  );
 
   // 이전 다음 btn, 페이지 배열
   const preBtnFn = () => () => {
@@ -91,17 +87,15 @@ export const Pagination = (props: PaginationProps) => {
     setCurrentPageArray(totalPageArray[pageIndex + 1]);
   };
 
-  const result = currentPageArray.map((pageNum, index) => (
-    <PageDiv key={index} pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
+  const result = currentPageArray.map((pageNum) => (
+    <PageDiv key={pageNum} pageNum={pageNum} selected={pageNum === currentPage} onClick={onClickPage} theme={theme} />
   ));
 
   return (
     <div className="flex justify-center">
-      {currentPageArray[0] != 1 && <PreNextDiv label={'이전'} theme={theme} onClick={preBtnFn} />}
+      {currentPageArray[0] !== 1 && <PreNextDiv label="이전" onClick={preBtnFn} />}
       {result}
-      {currentPageArray[currentPageArray.length - 1] != endPage && (
-        <PreNextDiv label={'다음'} theme={theme} onClick={nextBtnFn} />
-      )}
+      {currentPageArray[currentPageArray.length - 1] !== endPage && <PreNextDiv label="다음" onClick={nextBtnFn} />}
     </div>
   );
 };

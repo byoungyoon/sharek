@@ -1,5 +1,5 @@
-import { DisabledInput, SelectDiv } from '@components/atoms';
 import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
+import { DisabledInput, SelectDiv } from '@components/atoms';
 import Arrow from '@constants/svg/arrow.svg';
 import { useSpring, animated, config, useSpringRef, useChain } from '@react-spring/web';
 
@@ -14,10 +14,10 @@ export interface SelectProps {
    * 데이터 배열
    * @default []
    */
-  data?: Array<dataTypes>;
+  data?: Array<DataTypes>;
 }
 
-export type dataTypes = {
+export type DataTypes = {
   /**
    * 보이는 값
    */
@@ -34,7 +34,7 @@ export type dataTypes = {
   selectValue?: boolean;
 };
 
-const defaultData: dataTypes = {
+const defaultData: DataTypes = {
   label: '선택해주세요.',
   value: '',
   selectValue: true,
@@ -90,10 +90,10 @@ const optionAnimation = (open: boolean) => {
  * Select Component (molecules)
  */
 export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInputElement>) => {
-  const { theme = 'gray', data = [], ...prop } = props;
+  const { theme = 'gray', data = [] } = props;
 
   const [open, setOpen] = useState<boolean>(false); // option 보이는 여부
-  const [selectData, setSelectData] = useState<dataTypes>(defaultData); // 선택한 데이터
+  const [selectData, setSelectData] = useState<DataTypes>(defaultData); // 선택한 데이터
 
   const optionBorderColor = theme === 'gray' ? 'border-myGray' : 'border-myOrange';
   const svgColor = theme === 'gray' ? 'fill-myGray' : 'fill-myOrange';
@@ -127,10 +127,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInpu
    * @param label 보이는 값
    * @param value 키 값
    */
-  const onClickOption = (label: string, value: string) => () => {
+  const onClickOption = (T: string, D: string) => () => {
     if (!open) return;
 
-    setSelectData({ label: label, value: value });
+    setSelectData({ label: T, value: D });
   };
 
   /**
@@ -140,15 +140,22 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInpu
    */
   const isIndex = (index: number) => {
     if (index === 0) return 'start';
-    else if (index === data.length - 1) return 'end';
+    if (index === data.length - 1) return 'end';
+    return 'mid';
   };
 
   return (
-    <div className="relative min-w-sm max-w-md" tabIndex={-1} onClick={onClickSelect} onBlur={onBlurSelect}>
+    <div
+      className="relative min-w-sm max-w-md"
+      role="button"
+      tabIndex={-1}
+      onClick={onClickSelect}
+      onBlur={onBlurSelect}
+    >
       <DisabledInput theme={theme} label={selectData.label} style={{ cursor: 'pointer', paddingRight: '2.3rem' }} />
       <animated.div
         className="absolute top-2 right-2"
-        style={{ transform: rotate.to((rotate) => `rotateZ(${rotate}deg)`) }}
+        style={{ transform: rotate.to((tRotate) => `rotateZ(${tRotate}deg)`) }}
       >
         <Arrow className={svgColor} width="24" height="24" />
       </animated.div>
@@ -169,7 +176,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInpu
       >
         {data.map((key, index) => (
           <SelectDiv
-            key={index}
+            key={key.value}
             label={key.label}
             value={key.value}
             selected={key.value === selectData.value}
@@ -181,3 +188,5 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInpu
     </div>
   );
 });
+
+Select.displayName = 'Select';

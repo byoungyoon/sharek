@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from 'react';
+
 interface PreNextDivProps {
-  theme?: 'gray' | 'orange';
-  label: '이전' | '다음';
+  label?: '이전' | '다음';
   onClick?: () => MouseEventHandler<HTMLDivElement>;
 }
 
 export const PreNextDiv = (props: PreNextDivProps) => {
-  const { theme = 'gray', label, onClick = () => () => {}, ...prop } = props;
+  const { label, onClick = () => () => {} } = props;
   const classArr = [
     'w-13',
     'h-9',
@@ -23,7 +23,7 @@ export const PreNextDiv = (props: PreNextDivProps) => {
   ];
 
   return (
-    <div className={classArr.join(' ')} onClick={onClick()}>
+    <div className={classArr.join(' ')} role="button" tabIndex={0} onClick={onClick()}>
       {label}
     </div>
   );

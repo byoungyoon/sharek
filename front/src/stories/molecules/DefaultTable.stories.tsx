@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultTable, tableColumnTypes, tableDataTypes } from '@components/molecules';
+import { DefaultTable, TableColumnTypes, TableDataTypes } from '@components/molecules';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
@@ -15,14 +15,14 @@ export default {
 
 const Template: ComponentStory<typeof DefaultTable> = (args) => <DefaultTable {...args} />;
 
-const sampleColumn: Array<tableColumnTypes> = [
+const sampleColumn: Array<TableColumnTypes> = [
   {
     label: '#',
     key: 'num',
   },
   {
     label: '성',
-    key: 'fristName',
+    key: 'firstName',
   },
   {
     label: '이름',
@@ -42,10 +42,10 @@ const sampleColumn: Array<tableColumnTypes> = [
   },
 ];
 
-const sampleData: Array<tableDataTypes> = [
+const sampleData: Array<TableDataTypes> = [
   {
     num: '1',
-    fristName: '김',
+    firstName: '김',
     lastName: '성민',
     phone: '01034078809',
     gender: '남',
@@ -53,14 +53,14 @@ const sampleData: Array<tableDataTypes> = [
   },
   {
     num: '2',
-    fristName: '홍',
+    firstName: '홍',
     lastName: '길동',
     phone: '01012345678',
     gender: '남',
   },
   {
     num: '3',
-    fristName: '김',
+    firstName: '김',
     lastName: '성민',
     phone: '01034078809',
     gender: '남',
@@ -68,7 +68,7 @@ const sampleData: Array<tableDataTypes> = [
   },
   {
     num: '4',
-    fristName: '강',
+    firstName: '강',
     lastName: '사랑',
     phone: '01011112222',
     gender: '여',
@@ -76,14 +76,14 @@ const sampleData: Array<tableDataTypes> = [
   },
   {
     num: '5',
-    fristName: '김',
+    firstName: '김',
     lastName: '성민',
     phone: '01034078809',
     gender: '남',
   },
   {
     num: '6',
-    fristName: '김',
+    firstName: '김',
     lastName: '성민',
     phone: '01034078809',
     gender: '남',
@@ -91,8 +91,8 @@ const sampleData: Array<tableDataTypes> = [
   },
 ];
 
-export const Default = Template.bind({});
-Default.args = {
+export const Overview = Template.bind({});
+Overview.args = {
   header: true,
   columns: sampleColumn,
   data: sampleData,

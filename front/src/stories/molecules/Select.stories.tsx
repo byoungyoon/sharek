@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { dataTypes, Select } from '@components/molecules';
+import { DataTypes, Select } from '@components/molecules';
 
 export default {
   title: 'molecules/Select',
@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
-const sample: Array<dataTypes> = [
+const sample: Array<DataTypes> = [
   { label: 'label1', value: 'value1' },
   { label: 'label2', value: 'value2' },
   { label: 'label3', value: 'value3' },
@@ -24,7 +24,7 @@ const sample: Array<dataTypes> = [
   { label: 'label6', value: 'value6' },
 ];
 
-const sample2: Array<dataTypes> = [
+const sample2: Array<DataTypes> = [
   { label: 'label1', value: 'value1' },
   { label: 'label2', value: 'value2', selectValue: true },
   { label: 'label3', value: 'value3' },

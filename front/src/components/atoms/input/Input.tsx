@@ -13,3 +13,5 @@ export const Input = forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputE
 
   return <input ref={ref} type="text" className={classArr.join(' ')} {...prop} />;
 });
+
+Input.displayName = 'Input';

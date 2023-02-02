@@ -1,10 +1,10 @@
-import React, { MouseEvent, MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 interface SelectDivProps {
   label: string;
   value: string;
   selected: boolean;
-  index?: 'start' | 'end';
+  index?: 'start' | 'end' | 'mid';
   onClick?: (label: string, value: string) => MouseEventHandler<HTMLDivElement>;
 }
 
@@ -26,7 +26,7 @@ export const SelectDiv = (props: SelectDivProps) => {
   const classArr = ['p-1.5', `${bgColor}`, 'hover:bg-myOrange-pale', `${isRounded()}`, 'break-all'];
 
   return (
-    <div className={classArr.join(' ')} onClick={onClick(label, value)}>
+    <div role="button" tabIndex={0} className={classArr.join(' ')} onClick={onClick(label, value)}>
       {label}
     </div>
   );

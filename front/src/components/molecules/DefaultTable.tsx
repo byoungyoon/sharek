@@ -17,16 +17,16 @@ interface DefaultTableProps {
    * column 옵션
    * @default []
    */
-  columns?: Array<tableColumnTypes>;
+  columns?: Array<TableColumnTypes>;
 
   /**
    * data 옵션
    * @default []
    */
-  data?: Array<tableDataTypes>;
+  data?: Array<TableDataTypes>;
 }
 
-export type tableColumnTypes = {
+export type TableColumnTypes = {
   /**
    * 보여줄 데이터
    */
@@ -43,7 +43,7 @@ export type tableColumnTypes = {
   hidden?: boolean;
 };
 
-export type tableDataTypes = {
+export type TableDataTypes = {
   /**
    * ex) column key 값 : 보여줄 데이터
    */
@@ -54,43 +54,44 @@ export type tableDataTypes = {
  * DefaultTable Component (molecules) - V1
  */
 export const DefaultTable = (props: DefaultTableProps) => {
-  const { header = true, columns = [], data = [], height, ...prop } = props;
+  const { header = true, columns = [], data = [], height } = props;
 
   /**
    * thead 출력
    */
   const getThead = useMemo(() => {
-    let html = columns.map((column) => {
-      return column.hidden ? <Fragment key={column.key}></Fragment> : <Th key={column.key}>{column.label}</Th>;
+    return columns.map((column) => {
+      return column.hidden ? <Fragment key={column.key} /> : <Th key={column.key}>{column.label}</Th>;
     });
-
-    return header ? html : <></>;
-  }, [columns, header]);
+  }, [columns]);
 
   /**
    * tbody 출력
    */
   const getTbody = useMemo(() => {
-    const getTd = (data: tableDataTypes) => {
+    const getTd = (datum: TableDataTypes) => {
       return [...Array(columns.length)].map((_, index) => {
         const column = columns[index];
-        return column.hidden ? <Fragment key={column.key}></Fragment> : <Td key={column.key}>{data[column.key]}</Td>;
+        return column.hidden ? <Fragment key={column.key} /> : <Td key={column.key}>{datum[column.key]}</Td>;
       });
     };
 
     return data.map((datum, index) => {
+      // eslint-disable-next-line react/no-array-index-key
       return <Tr key={index}>{getTd(datum)}</Tr>;
     });
   }, [columns, data]);
 
   return (
-    <>
-      <Table style={{ maxHeight: height }}>
+    <Table style={{ maxHeight: height }}>
+      {header ? (
         <Thead>
           <Tr>{getThead}</Tr>
         </Thead>
-        <Tbody>{getTbody}</Tbody>
-      </Table>
-    </>
+      ) : (
+        <Fragment key="_" />
+      )}
+      <Tbody>{getTbody}</Tbody>
+    </Table>
   );
 };

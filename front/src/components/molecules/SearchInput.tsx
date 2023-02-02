@@ -8,20 +8,18 @@ interface SearchInputProps {
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { theme = 'gray', onKeyPress = () => {}, ...prop } = props;
+  const { theme = 'gray', onKeyPress = () => {} } = props;
 
   const borderColor = useMemo(() => (theme === 'gray' ? 'fill-myGray' : 'fill-myOrange'), [theme]);
   const target = useRef<HTMLInputElement>(null);
 
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && target.current) onKeyPress(target.current.value);
+  };
+
   useEffect(() => {
     target.current?.addEventListener('keydown', onKeyDown);
   }, []);
-
-  const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      target.current && onKeyPress(target.current?.value);
-    }
-  };
 
   return (
     <div className="relative tablet:w-full laptop:max-w-lg desktop:max-w-lg">

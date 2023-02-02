@@ -1,4 +1,4 @@
-import React, { ChangeEvent, CSSProperties, MouseEvent } from 'react';
+import React, { CSSProperties, MouseEvent } from 'react';
 
 interface ButtonProps {
   label: string;
@@ -23,7 +23,7 @@ export const Button = ({ label, theme = 'gray', onClick, ...prop }: ButtonProps)
   ];
 
   return (
-    <button className={classArr.join(' ')} {...prop}>
+    <button type="button" className={classArr.join(' ')} {...prop}>
       {label}
     </button>
   );

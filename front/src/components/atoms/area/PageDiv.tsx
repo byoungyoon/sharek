@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+
 interface PageDivProps {
   theme?: 'gray' | 'orange';
   pageNum: number;
@@ -7,7 +8,7 @@ interface PageDivProps {
 }
 
 export const PageDiv = (props: PageDivProps) => {
-  const { theme = 'gray', pageNum, selected, onClick = () => () => {}, ...prop } = props;
+  const { theme = 'gray', pageNum, selected, onClick = () => () => {} } = props;
   let bgColor;
   if (theme === 'gray') {
     bgColor = selected ? 'bg-myGray-light' : 'bg-white';
@@ -33,7 +34,7 @@ export const PageDiv = (props: PageDivProps) => {
   ];
 
   return (
-    <div className={classArr.join(' ')} onClick={onClick(pageNum)}>
+    <div className={classArr.join(' ')} role="button" tabIndex={0} onClick={onClick(pageNum)}>
       {pageNum}
     </div>
   );

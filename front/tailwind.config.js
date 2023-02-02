@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const Scroll = require('tailwind-scrollbar');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -55,5 +56,5 @@ module.exports = {
       desktop: { min: '1280px' },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [Scroll],
 };
