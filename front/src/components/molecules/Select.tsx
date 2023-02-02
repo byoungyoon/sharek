@@ -128,8 +128,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<HTMLInpu
    * @param value 키 값
    */
   const onClickOption = (T: string, D: string) => () => {
-    if (!open) return;
-
     setSelectData({ label: T, value: D });
   };
 
