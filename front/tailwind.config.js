@@ -50,6 +50,12 @@ module.exports = {
       myMed: 'NotoKR-Medium',
       myLight: 'NotoKR-Light',
     },
+    fontSize: {
+      myH1: '38px',
+      myH2: '28px',
+      myH3: '19px',
+      myH4: '15px',
+    },
     screens: {
       tablet: { max: '640px' },
       laptop: { min: '640px', max: '1280px' },

@@ -14,3 +14,5 @@ export * from './table/Td';
 export * from './table/Thead';
 export * from './table/Tbody';
 export * from './table/Table';
+
+export * from './title/Title';
