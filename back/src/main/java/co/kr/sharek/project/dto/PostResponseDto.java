@@ -1,6 +1,7 @@
 package co.kr.sharek.project.dto;
 
 import co.kr.sharek.project.domain.Post;
+import co.kr.sharek.project.domain.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,9 +10,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 public class PostResponseDto {
-  private Long id;
+  private Long seq;
   private String title;
-  private String writer;
+  private String userId;
   private String content;
   private String image;
   private Long vote;
@@ -20,23 +21,24 @@ public class PostResponseDto {
   private LocalDateTime modDt;
 
   public PostResponseDto(Long postId) {
-    this.id = postId;
+    this.seq = postId;
   }
 
-  public static PostResponseDto from(Post post) {
-    return new PostResponseDto(
-        post.getId(),
-        post.getTitle(),
-        post.getWriter(),
-        post.getContent(),
-        post.getImage(),
-        post.getVote(),
-        post.getView(),
-        post.getRetDt(),
-        post.getModDt());
-  }
-
-  public static PostResponseDto from(Long postId) {
-    return new PostResponseDto(postId);
-  }
+//  public static PostResponseDto from(Post post) {
+//    return new PostResponseDto(
+//        post.getSeq(),
+//        post.getTitle(),
+//        post.getUserId(),
+//        post.getContent(),
+//        post.getImage(),
+//        post.getVote(),
+//        post.getView(),
+//        post.getRetDt(),
+//        post.getModDt());
+//    return null;
+//  }
+//
+//  public static PostResponseDto from(Long postId) {
+//    return new PostResponseDto(postId);
+//  }
 }

@@ -22,49 +22,49 @@ import static co.kr.sharek.common.exception.ExceptionCode.NOT_FOUND_POST;
 @Transactional
 public class PostService {
 
-  private final PostRepository postRepository;
+//  private final PostRepository postRepository;
 
-  @Transactional(readOnly = true)
-  public PostResponseDto detailPostById(Long postId) {
-    Post post = postRepository.findById(postId).orElseThrow(NOT_FOUND_POST::getException);
-
-    return PostResponseDto.from(post);
-  }
-
-  @Transactional(readOnly = true)
-  public List<PostResponseDto> findByWriter(String writer) {
-    List<Post> posts = postRepository.findByWriter(writer);
-
-    return posts.stream()
-        .map(PostResponseDto::from)
-        .collect(Collectors.toList());
-  }
-
-  public PostResponseDto registerPost(PostRequestDto postRequestDto) {
-    Post post = Post.builder()
-        .title(postRequestDto.getTitle())
-        .content(postRequestDto.getContent())
-        .vote(0L)
-        .view(0L)
-        .retDt(LocalDateTime.now())
-        .build();
-
-    return PostResponseDto.from(postRepository.save(post));
-  }
-
-  public void updatePost(PostRequestDto postRequestDto) {
-    Post post = Post.builder()
-        .id(postRequestDto.getId())
-        .title(postRequestDto.getTitle())
-        .content(postRequestDto.getContent())
-        .modDt(LocalDateTime.now())
-        .build();
-
-    postRepository.save(post);
-  }
-
-  public void deleteByPostId(Long postId) {
-    postRepository.deleteById(postId);
-  }
+//  @Transactional(readOnly = true)
+//  public PostResponseDto detailPostById(Long postId) {
+//    Post post = postRepository.findById(postId).orElseThrow(NOT_FOUND_POST::getException);
+//
+//    return PostResponseDto.from(post);
+//  }
+//
+//  @Transactional(readOnly = true)
+//  public List<PostResponseDto> findByWriter(String writer) {
+//    List<Post> posts = postRepository.findByWriter(writer);
+//
+//    return posts.stream()
+//        .map(PostResponseDto::from)
+//        .collect(Collectors.toList());
+//  }
+//
+//  public PostResponseDto registerPost(PostRequestDto postRequestDto) {
+//    Post post = Post.builder()
+//        .title(postRequestDto.getTitle())
+//        .content(postRequestDto.getContent())
+//        .vote(0L)
+//        .view(0L)
+//        .retDt(LocalDateTime.now())
+//        .build();
+//
+//    return PostResponseDto.from(postRepository.save(post));
+//  }
+//
+//  public void updatePost(PostRequestDto postRequestDto) {
+//    Post post = Post.builder()
+//        .seq(postRequestDto.getId())
+//        .title(postRequestDto.getTitle())
+//        .content(postRequestDto.getContent())
+//        .modDt(LocalDateTime.now())
+//        .build();
+//
+//    postRepository.save(post);
+//  }
+//
+//  public void deleteByPostId(Long postId) {
+//    postRepository.deleteById(postId);
+//  }
 
 }

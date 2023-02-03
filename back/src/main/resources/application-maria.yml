@@ -12,6 +12,10 @@ spring:
     username: hello
     password: hello00
   jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
     properties:
       hibernate:
         format_sql: true

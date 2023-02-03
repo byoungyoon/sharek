@@ -27,20 +27,20 @@ public class PostRequestDto {
     this.id = postId;
   }
 
-  public static PostRequestDto from(Post post) {
-    return new PostRequestDto(
-        post.getId(),
-        post.getTitle(),
-        post.getWriter(),
-        post.getContent(),
-        post.getImage(),
-        post.getVote(),
-        post.getView(),
-        post.getRetDt(),
-        post.getModDt());
-  }
-
-  public static PostRequestDto from(Long postId) {
-    return new PostRequestDto(postId);
-  }
+//  public static PostRequestDto from(Post post) {
+//    return new PostRequestDto(
+//        post.getId(),
+//        post.getTitle(),
+//        post.getWriter(),
+//        post.getContent(),
+//        post.getImage(),
+//        post.getVote(),
+//        post.getView(),
+//        post.getRetDt(),
+//        post.getModDt());
+//  }
+//
+//  public static PostRequestDto from(Long postId) {
+//    return new PostRequestDto(postId);
+//  }
 }

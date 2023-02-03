@@ -1,55 +1,76 @@
 package co.kr.sharek.project.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Getter
-@NoArgsConstructor
 @Entity
-public class Post {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
+@Table(name = "CM_POST")
+public class Post extends Base{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @Column(name = "SEQ")
+  @Comment("순번")
+  private Long seq;
 
-  @Column(length = 100, nullable = false)
+  @ManyToOne
+  @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+  @Comment("아이디 (USER)")
+  private User userId;
+
+  @Column(name = "TITLE", length = 50)
+  @Comment("제목")
   private String title;
 
-  private String writer;
-
-  @Lob
+  @Column(name = "CONTENT", nullable = false)
+  @Comment("내용")
   private String content;
 
+  @Column(name = "IMAGE", length = 50, nullable = false)
+  @Comment("썸네일 이미지")
   private String image;
 
+  @Column(name = "VOTE")
+  @Comment("추천수")
   private Long vote;
 
+  @Column(name = "VIEW")
+  @Comment("조회수")
   private Long view;
 
-  @CreatedDate
-  @Column(name = "ret_dt")
+  @CreationTimestamp
+  @Column(name = "REG_DT")
+  @Comment("생성 날짜")
   private LocalDateTime retDt;
 
-  @LastModifiedDate
-  @Column(name = "mod_dt")
+  @UpdateTimestamp
+  @Column(name = "MOD_DT", nullable = false)
+  @Comment("수정 날짜")
   private LocalDateTime modDt;
 
-  @Builder
-  public Post(Long id, String title, String writer, String content, String image, Long vote, Long view, LocalDateTime retDt, LocalDateTime modDt) {
-    this.id = id;
-    this.title = title;
-    this.writer = writer;
-    this.content = content;
-    this.image = image;
-    this.vote = vote;
-    this.view = view;
-    this.retDt = retDt;
-    this.modDt = modDt;
+  @Override
+  @PrePersist
+  public void prePersist(){
+    super.prePersist();
+
+    vote = vote == null ? 0 : vote;
+    view = view == null ? 0 : view;
+  }
+
+  @Override
+  @PreUpdate
+  public void preUpdate(){
+    super.preUpdate();
   }
 }

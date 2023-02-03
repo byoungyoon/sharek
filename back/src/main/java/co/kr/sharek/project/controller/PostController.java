@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class PostController {
 
-  private final PostService postService;
+//  private final PostService postService;
 
-  @GetMapping("/{postId}")
-  public ResponseEntity<PostResponseDto> findPostById(@PathVariable Long postId) {
-    return ResponseEntity.ok(postService.detailPostById(postId));
-  }
-
-  @PostMapping("/regist")
-  public ResponseEntity<PostResponseDto> savePost(@RequestBody PostRequestDto postRequestDto) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(postService.registerPost(postRequestDto));
-  }
+//  @GetMapping("/{postId}")
+//  public ResponseEntity<PostResponseDto> findPostById(@PathVariable Long postId) {
+//    return ResponseEntity.ok(postService.detailPostById(postId));
+//  }
+//
+//  @PostMapping("/regist")
+//  public ResponseEntity<PostResponseDto> savePost(@RequestBody PostRequestDto postRequestDto) {
+//    return ResponseEntity.status(HttpStatus.CREATED).body(postService.registerPost(postRequestDto));
+//  }
 
 }

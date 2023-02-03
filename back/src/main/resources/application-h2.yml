@@ -18,6 +18,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create # update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
     properties:
       hibernate:
         format_sql: true
