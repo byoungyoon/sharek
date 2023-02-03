@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+
+spring:
+  datasource:
+    url: jdbc:mariadb://legendary.n-e.kr:3306
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: hello
+    password: hello00
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+  logging:
+    level:
+      org:
+        hibernate:
+          type:
+            descriptor:
+              sql: trace
+
+jwt:
+  secret: d12lk3lkjdslfkjlk23jlkjasdfo9azxcvpqowuemnbzxcqw70m4534asdjldasd19dkslfjafdjlk23jlweiob01askdhq
