@@ -40,7 +40,7 @@ public class Warning extends Base{
     @CreationTimestamp
     @Column(name = "REG_DT")
     @Comment("생성 날짜")
-    private LocalDateTime retDt;
+    private LocalDateTime regDt;
 
     @Override
     @PrePersist

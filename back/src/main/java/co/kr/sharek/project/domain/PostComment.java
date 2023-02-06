@@ -36,7 +36,7 @@ public class PostComment extends Base{
     @CreationTimestamp
     @Column(name = "REG_DT")
     @Comment("생성 날짜")
-    private LocalDateTime retDt;
+    private LocalDateTime regDt;
 
     @UpdateTimestamp
     @Column(name = "MOD_DT", nullable = false)

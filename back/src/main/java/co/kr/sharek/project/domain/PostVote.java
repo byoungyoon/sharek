@@ -1,6 +1,7 @@
 package co.kr.sharek.project.domain;
 
-import co.kr.sharek.common.constants.PostVoteVarianceEnum;
+import co.kr.sharek.common.constants.enums.PostVoteVarianceEnum;
+import co.kr.sharek.common.util.enums.PostVoteVarianceConverter;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,7 +30,7 @@ public class PostVote extends Base{
     @Comment("아이디 (USER, 외래키 X)")
     private String userId;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = PostVoteVarianceConverter.class)
     @Column(name = "VARIANCE")
     @Comment("업, 다운")
     private PostVoteVarianceEnum variance;
@@ -37,7 +38,7 @@ public class PostVote extends Base{
     @CreationTimestamp
     @Column(name = "REG_DT")
     @Comment("생성 날짜")
-    private LocalDateTime retDt;
+    private LocalDateTime regDt;
 
     @Override
     @PrePersist

@@ -1,11 +1,10 @@
 package co.kr.sharek.project.domain;
 
-import co.kr.sharek.common.constants.UserAuthEnum;
-import co.kr.sharek.common.constants.UserStateEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import co.kr.sharek.common.constants.enums.UserAuthEnum;
+import co.kr.sharek.common.constants.enums.UserStateEnum;
+import co.kr.sharek.common.util.enums.UserAuthConverter;
+import co.kr.sharek.common.util.enums.UserStateConverter;
+import lombok.*;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -19,13 +18,14 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @Table(name = "CM_USER")
+@ToString
 public class User extends Base{
     @Id
     @Column(name = "ID", length = 25)
     @Comment("아이디")
     private String id;
 
-    @Column(name = "PW", length = 20)
+    @Column(name = "PW", length = 60)
     @Comment("패스워드")
     private String pw;
 
@@ -53,7 +53,7 @@ public class User extends Base{
     @Comment("소속")
     private String team;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = UserStateConverter.class)
     @Column(name = "STATE")
     @Comment("아이디 상태")
     private UserStateEnum state;
@@ -62,7 +62,7 @@ public class User extends Base{
     @Comment("포인트")
     private Long point;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = UserAuthConverter.class)
     @Column(name = "AUTH")
     @Comment("권한")
     private UserAuthEnum auth;
@@ -70,7 +70,7 @@ public class User extends Base{
     @CreationTimestamp
     @Column(name = "REG_DT")
     @Comment("생성 날짜")
-    private LocalDateTime retDt;
+    private LocalDateTime regDt;
 
     @UpdateTimestamp
     @Column(name = "MOD_DT", nullable = false)

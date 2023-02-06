@@ -15,11 +15,11 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ReqSignupDto {
     @NotNull
-    @PatternCheck(regexp = "/^[a-z]+[a-z0-9]{5,15}$/g")
+    @PatternCheck(regexp = "^[a-z]+[a-z0-9]{4,15}$")
     private String id;
 
     @NotNull
-    @PatternCheck(regexp = "/^(?=.*\\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/")
+    @PatternCheck(regexp = "^(?=.*\\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$")
     private String pw;
 
     @NotNull
@@ -27,11 +27,10 @@ public class ReqSignupDto {
     private String name;
 
     @NotNull
-    @PatternCheck(regexp = "/^[a-z]$/g")
-    @Length(max = 6)
+    @PatternCheck(regexp = "^[a-z]{0,6}$")
     private String nickname;
 
     @NotNull
-    @PatternCheck(regexp = "/^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$/i")
+    @PatternCheck(regexp = "^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$")
     private String email;
 }

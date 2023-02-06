@@ -1,11 +1,12 @@
 package co.kr.sharek.config.security.service;
 
-import co.kr.sharek.config.security.dto.MemberRequestDto;
-import co.kr.sharek.config.security.dto.MemberResponseDto;
 import co.kr.sharek.config.security.dto.TokenDto;
-import co.kr.sharek.config.security.entity.Member;
 import co.kr.sharek.config.security.jwt.JwtTokenProvider;
 import co.kr.sharek.config.security.repository.MemberRepository;
+import co.kr.sharek.project.dto.user.ReqLoginDto;
+import co.kr.sharek.project.dto.user.ReqSignupDto;
+import co.kr.sharek.project.dto.user.UserDto;
+import co.kr.sharek.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,17 +24,28 @@ public class AuthService {
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider jwtTokenProvider;
 
-  public MemberResponseDto signUp(MemberRequestDto requestDto) {
-    if (memberRepository.existsByEmail(requestDto.getEmail())) {
+  private final UserRepository userRepository;
+
+  public UserDto signUp(ReqSignupDto reqDto) {
+    if (userRepository.existsById(reqDto.getId())) {
       throw new RuntimeException("이미 가입되어 있는 유저입니다");
     }
 
-    Member member = requestDto.toMember(passwordEncoder);
-    return MemberResponseDto.of(memberRepository.save(member));
+    UserDto userDto = UserDto.builder()
+            .id(reqDto.getId())
+            .pw(passwordEncoder.encode(reqDto.getPw()))
+            .name(reqDto.getName())
+            .nickname(reqDto.getNickname())
+            .email(reqDto.getEmail())
+            .build();
+
+    userRepository.save(new UserDto().dtoByDomain(userDto));
+
+    return userDto;
   }
 
-  public TokenDto login(MemberRequestDto requestDto) {
-    UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
+  public TokenDto login(ReqLoginDto reqDto) {
+    UsernamePasswordAuthenticationToken authenticationToken = reqDto.toAuthentication();
 
     Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
 

@@ -7,7 +7,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mariadb://legendary.n-e.kr:3306
+    url: jdbc:mariadb://legendary.n-e.kr:3306/sharek
     driver-class-name: org.mariadb.jdbc.Driver
     username: hello
     password: hello00
