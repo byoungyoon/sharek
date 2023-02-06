@@ -2,7 +2,6 @@ package co.kr.sharek.config.security.service;
 
 import co.kr.sharek.config.security.dto.TokenDto;
 import co.kr.sharek.config.security.jwt.JwtTokenProvider;
-import co.kr.sharek.config.security.repository.MemberRepository;
 import co.kr.sharek.project.dto.user.ReqLoginDto;
 import co.kr.sharek.project.dto.user.ReqSignupDto;
 import co.kr.sharek.project.dto.user.UserDto;
@@ -20,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class AuthService {
   private final AuthenticationManagerBuilder managerBuilder;
-  private final MemberRepository memberRepository;
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider jwtTokenProvider;
 
