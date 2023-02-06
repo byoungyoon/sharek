@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegLoginDto {
+public class ReqLoginDto {
     @NotNull
     @PatternCheck(regexp = "/^[a-z]+[a-z0-9]{5,15}$/g")
     private String id;
