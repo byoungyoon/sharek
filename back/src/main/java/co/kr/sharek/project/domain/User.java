@@ -1,6 +1,7 @@
 package co.kr.sharek.project.domain;
 
-import co.kr.sharek.common.constants.domain.UserStateEnum;
+import co.kr.sharek.common.constants.UserAuthEnum;
+import co.kr.sharek.common.constants.UserStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -61,6 +62,11 @@ public class User extends Base{
     @Comment("포인트")
     private Long point;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "AUTH")
+    @Comment("권한")
+    private UserAuthEnum auth;
+
     @CreationTimestamp
     @Column(name = "REG_DT")
     @Comment("생성 날짜")
@@ -78,6 +84,7 @@ public class User extends Base{
 
         state = state == null ? UserStateEnum.ACTIVE : state;
         point = point == null ? 300L : 0;
+        auth = auth == null ? UserAuthEnum.ROLE_USER : auth;
     }
 
     @Override

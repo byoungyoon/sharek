@@ -1,8 +1,11 @@
-package co.kr.sharek.common.constants.domain;
+package co.kr.sharek.common.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * PostVote entity variance enum values
+ */
 @AllArgsConstructor
 @Getter
 public enum PostVoteVarianceEnum {

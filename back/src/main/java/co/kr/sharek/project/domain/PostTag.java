@@ -1,6 +1,5 @@
 package co.kr.sharek.project.domain;
 
-import co.kr.sharek.common.constants.domain.UserStateEnum;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 

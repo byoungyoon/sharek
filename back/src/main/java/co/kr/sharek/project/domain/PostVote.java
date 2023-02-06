@@ -1,6 +1,6 @@
 package co.kr.sharek.project.domain;
 
-import co.kr.sharek.common.constants.domain.PostVoteVarianceEnum;
+import co.kr.sharek.common.constants.PostVoteVarianceEnum;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
