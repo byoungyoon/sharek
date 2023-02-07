@@ -1,22 +1,15 @@
 package co.kr.sharek.project.service;
 
 import co.kr.sharek.config.security.entity.Member;
-import co.kr.sharek.project.dto.RankResponseDto;
-import co.kr.sharek.project.repository.RankMappingRepository;
-import co.kr.sharek.project.repository.RankRepository;
+import co.kr.sharek.project.repository.RankRepositoryTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RankServiceTest {
 
     @Autowired
-    RankRepository rankRepository;
+    RankRepositoryTest rankRepository;
     @Autowired
     RankService rankService;
 
@@ -35,63 +28,70 @@ class RankServiceTest {
         final String state = "state";
 
         Member member = Member.builder()
-                .point(40L)
-                .nickname(nickname)
-                .email("post@naver.com")
                 .password("1234")
+                .nickname("name13477")
+                .email("email@naver.com")
                 .state(state)
+                .point(40L)
+                .build();
+
+        Member member2 = Member.builder()
+                .password("1234")
+                .nickname("name134")
+                .email("emai4l@naver.com")
+                .state(state)
+                .point(20L)
+                .build();
+
+        Member member3 = Member.builder()
+                .password("1234")
+                .nickname("name1342")
+                .email("emai3l@naver.com")
+                .state(state)
+                .point(10L)
                 .build();
 
         rankRepository.save(member);
-
-        Member member1 = Member.builder()
-                .point(10L)
-                .nickname("nickname2")
-                .email("post2@naver.com")
-                .password("1234")
-                .state(state)
-                .build();
-
-        rankRepository.save(member1);
-
-        Member member2 = Member.builder()
-                .point(80L)
-                .nickname("nickname3")
-                .email("post3@naver.com")
-                .password("1234")
-                .state(state)
-                .build();
-
         rankRepository.save(member2);
+        rankRepository.save(member3);
+
+
     }
 
     @AfterEach
     void clean_up() {
-    rankRepository.deleteAll();
+        rankRepository.deleteAll();
 }
 
     @Test
     void 전체랭킹출력() {
-        Pageable pageable = PageRequest.of(0,2);
-        String nickname = "nickname4";
+        Pageable pageable = PageRequest.of(0,3);
 
-        Page<RankMappingRepository> page =  rankRepository.findByNicknameContainingOrderByPointDesc(nickname, pageable);
+//        Page<RankMappingRepository> page =  rankRepository.findByNicknameContainingOrderByPointDesc(null, pageable);
 
-        if(page.isEmpty()){
-            Page<RankMappingRepository> pages = rankRepository.findByOrderByPointDesc(pageable);
-            System.out.println(pages.getContent());
-            List<RankMappingRepository> l = pages.getContent();
-            l.forEach(System.out::println);
-        } else{
-            System.out.println("Page Size : " + page.getSize());
-            System.out.println("Total Pages : " + page.getTotalPages());
-            System.out.println("Total Count : " + page.getTotalElements());
-            System.out.println("isNextPage : " + page.hasNext());
-            System.out.println("Next : " + page.nextPageable());
-
-            List<RankMappingRepository> list = page.getContent();
-            System.out.println(list.get(0));
-        }
+//        Page<RankMappingRepository> page =  rankRepository.findByOrderByPointDesc(pageable);
+//        Slice<RankSummary> list = rankRepository.findByOrderByPointDesc(PageRequest.of(0, 2));
+//        Page<RankSummary> lists = rankRepository.findByNicknameContainingOrderByPointDesc("name", PageRequest.of(0, 3));
+//        System.out.println(" ");
+//        for (RankSummary r : lists.getContent()){
+//            System.out.println(r.getPoint());
+//        }
+        System.out.println(" ");
+//        if(page.isEmpty()){
+//            Page<RankMappingRepository> pages = rankRepository.findByOrderByPointDesc(pageable);
+//            System.out.println(pages.getContent());
+//            List<RankMappingRepository> l = pages.getContent();
+//            l.forEach(System.out::println);
+//        } else{
+//            System.out.println("Page Size : " + page.getSize());
+//            System.out.println("Total Pages : " + page.getTotalPages());
+//            System.out.println("Total Count : " + page.getTotalElements());
+//            System.out.println("isNextPage : " + page.hasNext());
+//            System.out.println("Next : " + page.nextPageable());
+//
+//            List<RankMappingRepository> list = page.getContent();
+//            System.out.println(list.get(0));
+//        }
     }
 
 //    @Test

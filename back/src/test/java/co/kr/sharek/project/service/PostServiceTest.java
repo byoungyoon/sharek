@@ -41,7 +41,7 @@ public class PostServiceTest {
         .content("Hello...")
         .view(0L)
         .vote(0L)
-        .retDt(LocalDateTime.now())
+        .regDt(LocalDateTime.now())
         .build();
     postRepository.save(post);
   }
