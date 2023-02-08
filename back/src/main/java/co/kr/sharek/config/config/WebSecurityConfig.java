@@ -1,5 +1,6 @@
 package co.kr.sharek.config.config;
 
+import co.kr.sharek.common.constants.enums.UserAuthEnum;
 import co.kr.sharek.config.security.jwt.JwtAccessDeniedHandler;
 import co.kr.sharek.config.security.jwt.JwtAuthenticationEntryPoint;
 import co.kr.sharek.config.security.jwt.JwtSecurityConfig;
@@ -46,7 +47,14 @@ public class WebSecurityConfig {
           .accessDeniedHandler(jwtAccessDeniedHandler)
         .and()
           .authorizeRequests()
-          .antMatchers("/auth/**","/h2-console/**").permitAll()
+          .antMatchers("/api/**","/h2-console/**").permitAll()
+          .antMatchers("/user/**").hasAnyAuthority(
+                    UserAuthEnum.ROLE_ADMIN.getValue(),
+                    UserAuthEnum.ROLE_USER.getValue()
+            )
+          .antMatchers("/admin/**").hasAnyAuthority(
+                  UserAuthEnum.ROLE_ADMIN.getValue()
+            )
           .anyRequest().authenticated()
         .and()
           .apply(new JwtSecurityConfig(jwtTokenProvider))

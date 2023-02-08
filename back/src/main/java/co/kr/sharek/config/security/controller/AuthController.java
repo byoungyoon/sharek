@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/api")
 @RestController
 public class AuthController {
     private final AuthService authService;
