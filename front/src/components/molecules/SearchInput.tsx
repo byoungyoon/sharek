@@ -4,21 +4,21 @@ import { Input } from '@components/atoms';
 
 interface SearchInputProps {
   theme?: 'gray' | 'orange';
-  onKeyPress?: (value: string) => void;
+  onKeyDown?: (value: string) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { theme = 'gray', onKeyPress = () => {} } = props;
+  const { theme = 'gray', onKeyDown = () => {} } = props;
 
   const borderColor = useMemo(() => (theme === 'gray' ? 'fill-myGray' : 'fill-myOrange'), [theme]);
   const target = useRef<HTMLInputElement>(null);
 
-  const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' && target.current) onKeyPress(target.current.value);
+  const onKeyDownHandler = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && target.current) onKeyDown(target.current.value);
   };
 
   useEffect(() => {
-    target.current?.addEventListener('keydown', onKeyDown);
+    target.current?.addEventListener('keydown', onKeyDownHandler);
   }, []);
 
   return (
