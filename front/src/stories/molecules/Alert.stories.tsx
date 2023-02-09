@@ -7,7 +7,7 @@ export default {
   componet: Alert,
 } as ComponentMeta<typeof Alert>;
 
-const Template: ComponentStory<typeof Alert> = () => (
+const Template: ComponentStory<typeof Alert> = (args) => (
   <>
     <Alert type="success">You can access all the files in the folder</Alert>
     <div className="h-[30px]" />
@@ -20,3 +20,18 @@ const Template: ComponentStory<typeof Alert> = () => (
 );
 
 export const Overview = Template.bind({});
+
+const SampleTemplate: ComponentStory<typeof Alert> = (args) => <Alert {...args} />;
+export const Sample = SampleTemplate.bind({});
+
+Sample.args = {
+  children: 'test',
+  type: 'success',
+};
+
+Sample.argTypes = {
+  type: {
+    options: ['success', 'warning', 'error', 'info'],
+    control: { type: 'radio' },
+  },
+};
