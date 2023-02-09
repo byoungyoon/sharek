@@ -4,7 +4,7 @@ interface TitleProps {
   /**
    * 자식요소로 label
    */
-  label?: string;
+  label?: string | JSX.Element;
 
   /**
    * font weight 선택
@@ -15,13 +15,18 @@ interface TitleProps {
    * font size
    */
   fontStyle?: 'h1' | 'h2' | 'h3' | 'h4';
+
+  /**
+   * className
+   */
+  className?: string;
 }
 
 /**
  * Title Component (atoms)
  */
 export const Title = (props: TitleProps) => {
-  const { label, fontWeight = 'light', fontStyle = 'h4', ...prop } = props;
+  const { label, fontWeight = 'light', fontStyle = 'h4', className, ...prop } = props;
 
   const getFontWeight = () => {
     switch (fontWeight) {
@@ -51,7 +56,7 @@ export const Title = (props: TitleProps) => {
     }
   };
 
-  const classArr = ['p-2', getFontStyle(), getFontWeight()];
+  const classArr = ['p-2', getFontStyle(), getFontWeight(), className];
 
   return (
     <p className={classArr.join(' ')} {...prop}>
