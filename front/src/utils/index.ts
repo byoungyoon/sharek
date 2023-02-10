@@ -1,3 +1,3 @@
 export * from './localStorage';
-export * from './store';
-export * from './spring';
+export * from './useSpring';
+export * from './useStore';
