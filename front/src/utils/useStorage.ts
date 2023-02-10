@@ -31,4 +31,4 @@ class LocalStorage implements PersistentStorage {
   }
 }
 
-export const persistentStorage = new LocalStorage();
+export const useStorage = new LocalStorage();

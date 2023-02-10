@@ -8,7 +8,7 @@ interface CardDivProps {
 export const CardDiv = (props: CardDivProps) => {
   const { children, className } = props;
 
-  const classArr = ['border-myGray', 'border w-max', 'p-1.5', 'rounded-sm', className];
+  const classArr = ['bg-gray-50', 'border-myGray', 'border w-max', 'p-1.5', 'rounded-sm', className];
 
   return <div className={classArr.join(' ')}>{children}</div>;
 };

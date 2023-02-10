@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from '@components/molecules';
 
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
@@ -11,6 +10,5 @@ const root = createRoot(container);
 root.render(
   <HashRouter>
     <App />
-    <Alert />
   </HashRouter>,
 );
