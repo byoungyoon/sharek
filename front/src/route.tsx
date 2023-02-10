@@ -1,14 +1,26 @@
 import React from 'react';
 
-import { Login, Main } from './pages';
+import { MainPage, PostPage, RankPage, UserPage, Error404 } from './pages';
 
 export const element = [
   {
     path: '/',
-    element: <Main />,
+    element: <MainPage />,
   },
   {
-    path: '/login',
-    element: <Login />,
+    path: '/post',
+    element: <PostPage />,
+  },
+  {
+    path: '/rank',
+    element: <RankPage />,
+  },
+  {
+    path: '/user',
+    element: <UserPage />,
+  },
+  {
+    path: '*',
+    element: <Error404 />,
   },
 ];
