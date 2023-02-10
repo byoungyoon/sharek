@@ -2,10 +2,13 @@ import React from 'react';
 
 interface CardDivProps {
   children?: JSX.Element;
+  className?: string;
 }
 
 export const CardDiv = (props: CardDivProps) => {
-  const { children } = props;
+  const { children, className } = props;
 
-  return <div className="border-myGray border w-max p-1.5 rounded-sm">{children}</div>;
+  const classArr = ['border-myGray', 'border w-max', 'p-1.5', 'rounded-sm', className];
+
+  return <div className={classArr.join(' ')}>{children}</div>;
 };
