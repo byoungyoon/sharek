@@ -9,15 +9,45 @@ export const element = [
   },
   {
     path: '/post',
-    element: <PostPage />,
+    children: [
+      {
+        index: true,
+        element: <PostPage />,
+      },
+      {
+        index: false,
+        path: ':key',
+        element: <PostPage />,
+      },
+    ],
   },
   {
     path: '/rank',
-    element: <RankPage />,
+    children: [
+      {
+        index: true,
+        element: <RankPage />,
+      },
+      {
+        index: false,
+        path: ':key',
+        element: <RankPage />,
+      },
+    ],
   },
   {
     path: '/user',
-    element: <UserPage />,
+    children: [
+      {
+        index: true,
+        element: <UserPage />,
+      },
+      {
+        index: false,
+        path: ':key',
+        element: <UserPage />,
+      },
+    ],
   },
   {
     path: '*',
