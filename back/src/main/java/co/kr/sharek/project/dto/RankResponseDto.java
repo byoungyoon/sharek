@@ -1,5 +1,6 @@
 package co.kr.sharek.project.dto;
 
+import co.kr.sharek.project.domain.User;
 import co.kr.sharek.project.repository.RankSummary;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,15 +21,15 @@ public class RankResponseDto {
     private String team;
     private Long point;
 
-    public static RankResponseDto from(RankSummary rank){
+    public static RankResponseDto from(User user){
         return new RankResponseDto(
-                rank.getId(),
-                rank.getName(),
-                rank.getNickname(),
-                rank.getImg(),
-                rank.getProfile(),
-                rank.getTeam(),
-                rank.getPoint()
+                user.getId(),
+                user.getName(),
+                user.getNickname(),
+                user.getImg(),
+                user.getProfill(),
+                user.getTeam(),
+                user.getPoint()
         );
     }
 }

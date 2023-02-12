@@ -9,7 +9,8 @@ public interface RankSummary {
     String getName();
     String getNickname();
     String getImg();
-    String getProfile();
+    String getProfill();
     String getTeam();
     Long getPoint();
+    Long getRank();
 }

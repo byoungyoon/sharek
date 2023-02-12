@@ -1,10 +1,9 @@
 package co.kr.sharek.project.service;
 
-import co.kr.sharek.project.domain.Rank;
 import co.kr.sharek.project.domain.User;
-import co.kr.sharek.project.dto.RankResponseDto;
 import co.kr.sharek.project.repository.RankRepository;
 import co.kr.sharek.project.repository.RankSummary;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,11 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -24,20 +20,19 @@ public class RankService {
     private final RankRepository rankRepository;
 
     @Transactional(readOnly = true)
-    public Page<RankSummary> findNickname (String nickname, Pageable pageable) {
-        Page<RankSummary> rank = rankRepository.findByNickname(nickname, pageable);
+    public Page<RankSummary> getSearchNickname (String nickname, Pageable pageable) {
+        Page<RankSummary> rank = rankRepository.getSearchNickname(nickname, pageable);
 
         return rank;
     }
 
     @Transactional(readOnly = true)
-    public Page<RankSummary> findAllRank (Pageable pageable) {
-        Page<RankSummary> rank = rankRepository.findByOrderByPointDesc(pageable);
+    public Page<RankSummary> getRankingList (Pageable pageable) {
 
-        return rank;
+        return rankRepository.getRankingList(pageable);
     }
 
-    //TODO
+    // TODO
     @Transactional(readOnly = true)
     public List<String> findMyRank(){
 
