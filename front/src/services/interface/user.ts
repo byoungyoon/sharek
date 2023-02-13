@@ -12,3 +12,7 @@ export interface IUser {
   regDt?: string;
   modDt?: string;
 }
+
+export interface IToken extends IUser {
+  accessToken: string;
+}

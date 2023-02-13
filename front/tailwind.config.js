@@ -44,6 +44,7 @@ module.exports = {
         light: '#FFD174',
         pale: '#FFECC6',
       },
+      background: '#283140',
     },
     fontFamily: {
       myBold: 'NotoKR-Bold',

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRoutes } from 'react-router-dom';
 import { Alert } from '@components/molecules';
-import { useAxiosInterceptor } from '@utils/useAxiosInterceptor';
+import { useAxiosInterceptor } from '@utils/common/useAxiosInterceptor';
 import { element } from './route';
 
 import './index.css';
@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <>
-      <div>{routes}</div>
+      {routes}
       <Alert />
     </>
   );

@@ -8,7 +8,7 @@ import Warning from '@constants/svg/warning.svg';
 import Close from '@constants/svg/close.svg';
 import { useAlert, useAlertDefault } from '@utils/index';
 import { animated } from '@react-spring/web';
-import { useOpacityAnimation } from '@utils/useSpring';
+import { useOpacityAnimation } from '@utils/spring/useSpring';
 
 /**
  * Alert molecules

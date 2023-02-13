@@ -1,56 +1,62 @@
 import React from 'react';
+import { MainLayout } from 'layouts';
 
-import { MainPage, PostPage, RankPage, UserPage, Error404 } from './pages';
+import { Error404, MainPage, PostPage, RankPage, UserPage } from './pages';
 
 export const element = [
   {
-    path: '/',
-    element: <MainPage />,
-  },
-  {
-    path: '/post',
+    element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: <PostPage />,
+        path: '',
+        element: <MainPage />,
       },
       {
-        index: false,
-        path: ':key',
-        element: <PostPage />,
+        path: 'post',
+        children: [
+          {
+            index: true,
+            element: <PostPage />,
+          },
+          {
+            index: false,
+            element: <PostPage />,
+            path: ':key',
+          },
+        ],
+      },
+      {
+        path: 'rank',
+        children: [
+          {
+            index: true,
+            element: <RankPage />,
+          },
+          {
+            index: false,
+            element: <RankPage />,
+            path: ':key',
+          },
+        ],
+      },
+      {
+        path: 'user',
+        children: [
+          {
+            index: true,
+            element: <UserPage />,
+          },
+          {
+            index: false,
+            element: <UserPage />,
+            path: ':key',
+          },
+        ],
+      },
+      {
+        path: '*',
+        element: <Error404 />,
       },
     ],
-  },
-  {
-    path: '/rank',
-    children: [
-      {
-        index: true,
-        element: <RankPage />,
-      },
-      {
-        index: false,
-        path: ':key',
-        element: <RankPage />,
-      },
-    ],
-  },
-  {
-    path: '/user',
-    children: [
-      {
-        index: true,
-        element: <UserPage />,
-      },
-      {
-        index: false,
-        path: ':key',
-        element: <UserPage />,
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <Error404 />,
   },
 ];

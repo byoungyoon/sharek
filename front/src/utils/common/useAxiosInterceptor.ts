@@ -2,16 +2,10 @@ import { CustomAxios } from '@services/index';
 import { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
 import { useEffect } from 'react';
 import { useStorage } from './useStorage';
-import { IAlert, useAlert } from './useStore';
+import { AlertType, useAlertOpen } from '../zustand/useAlert';
 
 export const useAxiosInterceptor = () => {
-  const { setOpen } = useAlert();
-
-  const alert: IAlert = {
-    open: true,
-    type: 'error',
-    message: '',
-  };
+  const { setOpen, setAlert } = useAlertOpen();
 
   const requestHandler = (config: AxiosRequestConfig) => {
     if (!config.url?.startsWith('/api')) {
@@ -19,8 +13,7 @@ export const useAxiosInterceptor = () => {
       const user = getItem('user');
 
       if (user == null) {
-        alert.type = 'info';
-        alert.message = '로그인이 필요한 서비스입니다.';
+        setOpen(setAlert(AlertType.INFO, '로그인이 필요한 서비스입니다.'));
       } else {
         // eslint-disable-next-line
         config.headers = config.headers ?? {};
@@ -38,22 +31,18 @@ export const useAxiosInterceptor = () => {
 
   const errorHandler = (error: AxiosError) => {
     if (error.response) {
-      alert.type = 'error';
       switch (error.response.status) {
         case 400:
-          alert.message = 'HTTP 통신을 하는 매개변수가 잘못되었습니다.';
-          setOpen(alert);
+          setOpen(setAlert(AlertType.ERROR, 'HTTP 통신을 하는 매개변수가 잘못되었습니다.'));
           break;
         case 401:
-          alert.message = '해당하는 기능에 대한 권한이 없습니다.';
-          setOpen(alert);
+          setOpen(setAlert(AlertType.ERROR, '해당하는 기능에 대한 권한이 없습니다.'));
           break;
         case 500:
-          alert.message = '서버 오류입니다.';
-          setOpen(alert);
+          setOpen(setAlert(AlertType.ERROR, '서버 오류입니다.'));
           break;
         default:
-          alert.message = `${error.code} : ${error.message}`;
+          setOpen(setAlert(AlertType.ERROR, `${error.code} : ${error.message}`));
           break;
       }
     }
