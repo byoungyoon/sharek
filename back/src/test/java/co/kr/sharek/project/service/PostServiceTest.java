@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @ActiveProfiles("test")
 @DisplayName("Post 클래스")
-@DataJpaTest
+@Import(PostService.class)
 public class PostServiceTest {
 
   private final static String POST_TITLE = "글 제목";

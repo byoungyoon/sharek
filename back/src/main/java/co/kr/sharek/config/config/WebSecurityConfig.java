@@ -28,6 +28,17 @@ public class WebSecurityConfig {
   private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
   private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
+  private static final String[] PERMIT_URL_ARRAY = {
+      "/api/**",
+      "/h2-console/**",
+      /* Swagger v3 */
+      "/v2/api-docs",
+      "/swagger-resources",
+      "/swagger-resources/**",
+      "/v3/api-docs/**",
+      "/swagger-ui/**"
+    };
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -47,7 +58,7 @@ public class WebSecurityConfig {
           .accessDeniedHandler(jwtAccessDeniedHandler)
         .and()
           .authorizeRequests()
-          .antMatchers("/api/**","/h2-console/**").permitAll()
+          .antMatchers(PERMIT_URL_ARRAY).permitAll()
           .antMatchers("/user/**").hasAnyAuthority(
                     UserAuthEnum.ROLE_ADMIN.getValue(),
                     UserAuthEnum.ROLE_USER.getValue()

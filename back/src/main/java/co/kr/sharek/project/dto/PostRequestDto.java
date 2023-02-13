@@ -1,13 +1,11 @@
 package co.kr.sharek.project.dto;
 
 import co.kr.sharek.project.domain.Post;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter

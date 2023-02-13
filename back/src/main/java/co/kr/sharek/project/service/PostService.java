@@ -1,13 +1,11 @@
 package co.kr.sharek.project.service;
 
 import co.kr.sharek.common.exception.ExceptionCode;
-import co.kr.sharek.common.exception.httpexception.NotFoundException;
 import co.kr.sharek.project.domain.Post;
 import co.kr.sharek.project.dto.PostRequestDto;
 import co.kr.sharek.project.dto.PostResponseDto;
 import co.kr.sharek.project.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +16,8 @@ import java.util.stream.Collectors;
 import static co.kr.sharek.common.exception.ExceptionCode.NOT_FOUND_POST;
 
 @RequiredArgsConstructor
-@Service
 @Transactional
+@Service
 public class PostService {
 
 //  private final PostRepository postRepository;
