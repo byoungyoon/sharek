@@ -7,7 +7,7 @@ interface ButtonProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = ({ label, theme = 'gray', onClick, ...prop }: ButtonProps) => {
+export const Button = ({ label, theme = 'gray', ...prop }: ButtonProps) => {
   const borderColor = theme === 'gray' ? 'border-myGray text-myGray' : 'border-myOrange text-myOrange';
   const hoverColor = theme === 'gray' ? 'hover:bg-myGray' : 'hover:bg-myOrange';
   const classArr = [
