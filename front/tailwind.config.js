@@ -35,6 +35,10 @@ module.exports = {
     },
     colors: {
       ...colors,
+      theme: {
+        light: '#0ea5e9',
+        dark: '#FDB728',
+      },
       myGray: {
         DEFAULT: '#BCBCBC',
         light: '#D9D9D9',

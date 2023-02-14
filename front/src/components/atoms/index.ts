@@ -7,6 +7,7 @@ export * from './area/SelectDiv';
 export * from './area/PageDiv';
 export * from './area/PreNextDiv';
 export * from './area/CardDiv';
+export * from './area/Logo';
 
 export * from './table/Th';
 export * from './table/Tr';

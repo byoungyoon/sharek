@@ -4,6 +4,7 @@ import { Outlet, useOutletContext } from 'react-router-dom';
 import { useStorage } from '@utils/common/useStorage';
 import { ThemeButton } from '@components/molecules';
 import { ThemeType, useTheme } from '@utils/zustand/useTheme';
+import { Logo, Title } from '@components/atoms';
 
 export const MainLayout = () => {
   const [token, setToken] = useState<IToken | null>(null);
@@ -30,13 +31,19 @@ export const MainLayout = () => {
     'desktop:w-[1280px] desktop:h-[780px]',
     'shadow-lg',
     'flex justify-between',
-    '[&>div]:p-2',
+    '[&>div]:p-4',
   ];
 
   return (
     <div className={containerArr.join(' ')}>
       <div className={mainArr.join(' ')}>
-        <div className="bg-nav dark:bg-nav-dark w-[300px]">메뉴</div>
+        <div className="bg-nav dark:bg-nav-dark w-[300px]">
+          <div className="mb-7">
+            <Logo theme={theme} />
+          </div>
+          <Title className="text-myGray" fontStyle="h4" fontWeight="medium" label="Navigation" />
+          <div className="p-2">1</div>
+        </div>
         <div className="bg-main dark:bg-main-dark w-full">
           <Outlet context={token} />
         </div>
