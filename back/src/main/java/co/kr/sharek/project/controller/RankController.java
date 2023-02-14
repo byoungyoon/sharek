@@ -1,6 +1,5 @@
 package co.kr.sharek.project.controller;
 
-import co.kr.sharek.project.repository.RankRepository;
 import co.kr.sharek.project.service.RankService;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,9 +36,4 @@ public class RankController {
             @PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(rankService.getRankingList(pageable));
     }
-
-//    @GetMapping("/api/rank/{id}")
-//    public ResponseEntity<?> myRank(){
-//       return ResponseEntity.ok(rankService.findMyRank());
-//    }
 }

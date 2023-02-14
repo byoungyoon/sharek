@@ -128,21 +128,4 @@ class RankServiceTest {
 //            System.out.println(list.get(0));
 //        }
     }
-
-//    @Test
-//    void 내랭킹확인(){
-//        List<RankMappingRepository> list = rankRepository.findByOrderByPointDesc();
-//
-//        System.out.println(list.stream()
-//                .map(RankResponseDto::from)
-//                .collect(Collectors.toList()));
-//
-//        for(int i=0; i<list.size(); i++){
-//            if(list.get(i).getNickname().equals("nickname2")){
-//                System.out.println(i+1 + "번째 있음");
-//                break;
-//            }
-//        }
-//
-//    }
 }

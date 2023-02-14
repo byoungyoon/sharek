@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
 
 public interface RankRepository extends JpaRepository<User, String> {
 
@@ -22,5 +21,4 @@ public interface RankRepository extends JpaRepository<User, String> {
             ,countQuery = "SELECT count(*) FROM CM_USER"
             ,nativeQuery = true)
     Page<RankSummary> getRankingList(Pageable pageable);
-
 }
