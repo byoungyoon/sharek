@@ -1,5 +1,9 @@
 package co.kr.sharek.project.controller;
 
+import co.kr.sharek.common.constants.enums.ResCodeEnum;
+import co.kr.sharek.common.dto.ResCodeDto;
+import co.kr.sharek.common.util.JsonUtil;
+import co.kr.sharek.project.dto.common.ReqPageDto;
 import co.kr.sharek.project.service.RankService;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +14,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @Api(tags = { "사용자 랭킹 정보를 제공하는 RankController" })
 @RestController
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class RankController {
     private final RankService rankService;
+    private final JsonUtil jsonUtil;
 
     @ApiResponse(code = 200, message = "성공")
     @ApiImplicitParams({
@@ -31,9 +38,14 @@ public class RankController {
 
     @Operation(summary = "사용자 랭킹 페이징", description = "랭킹을 기존 20개씩 조회합니다.")
     @GetMapping("/api/rank")
-    public ResponseEntity<?> getRankingList(
-            @ApiParam(value = "페이징", defaultValue = "20")
-            @PageableDefault(size = 20) Pageable pageable) {
-        return ResponseEntity.ok(rankService.getRankingList(pageable));
+    public ResponseEntity<ResCodeDto> getRankAll(@Valid @ApiParam(value = "페이지 dto") ReqPageDto reqDto) {
+        jsonUtil.writeStringAndLog(reqDto);
+
+        ResCodeDto resDto = ResCodeDto.builder()
+                .code(ResCodeEnum.SUCCESS.getValue())
+                .data(rankService.getRankAll(reqDto))
+                .build();
+
+        return ResponseEntity.ok(resDto);
     }
 }
