@@ -5,9 +5,18 @@ import co.kr.sharek.common.constants.enums.UserStateEnum;
 import co.kr.sharek.config.config.QueryDslConfig;
 import co.kr.sharek.project.domain.QUser;
 import co.kr.sharek.project.domain.User;
+import co.kr.sharek.project.dto.RankDto;
 import co.kr.sharek.project.dto.common.ReqPageDto;
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberExpression;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.JPQLQuery;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
@@ -18,15 +27,25 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     QUser user = QUser.user;
 
     @Override
-    public List<User> findPaging(ReqPageDto pageDto) {
+    public List<RankDto> findPaging(ReqPageDto pageDto) {
+        QUser user1 = new QUser("user1");
+
+        JPQLQuery<Long> rankSubQuery = JPAExpressions
+                .select(user1.point.count().add(1))
+                .from(user1)
+                .where(user1.point.gt(user.point));
+
+        NumberExpression<Long> rankExpression = Expressions.numberTemplate(Long.class, "({0})", rankSubQuery);
+
         return queryDslConfig.jpaQueryFactory()
-                .select(Projections.fields(User.class,
+                .select(Projections.fields(RankDto.class,
                         user.id
                       , user.name
                       , user.nickname
                       , user.img
                       , user.profill
                       , user.point
+                      , rankExpression.as("rank")
                 ))
                 .from(user)
                 .where(user.name.contains(pageDto.getName()))
