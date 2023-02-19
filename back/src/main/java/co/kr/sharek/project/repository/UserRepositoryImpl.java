@@ -4,19 +4,14 @@ import co.kr.sharek.common.constants.enums.UserAuthEnum;
 import co.kr.sharek.common.constants.enums.UserStateEnum;
 import co.kr.sharek.config.config.QueryDslConfig;
 import co.kr.sharek.project.domain.QUser;
-import co.kr.sharek.project.domain.User;
 import co.kr.sharek.project.dto.RankDto;
 import co.kr.sharek.project.dto.common.ReqPageDto;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberExpression;
-import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
