@@ -1,4 +1,31 @@
-import { TableDataTypes } from '@components/molecules';
+import { TableDataTypes, TableColumnTypes } from '@components/molecules';
+
+export const ColumnData: Array<TableColumnTypes> = [
+  {
+    label: '#',
+    key: 'num',
+  },
+  {
+    label: '성',
+    key: 'firstName',
+  },
+  {
+    label: '이름',
+    key: 'lastName',
+  },
+  {
+    label: '전화번호',
+    key: 'phone',
+  },
+  {
+    label: '성별',
+    key: 'gender',
+  },
+  {
+    label: '부가사항',
+    key: 'option',
+  },
+];
 
 export const RowData: Array<TableDataTypes> = [
   {

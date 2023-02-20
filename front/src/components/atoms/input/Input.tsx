@@ -9,7 +9,16 @@ export const Input = forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputE
   const { theme = 'gray', ...prop } = props;
 
   const borderColor = useMemo(() => (theme === 'gray' ? 'border-myGray' : 'border-myOrange'), [theme]);
-  const classArr = ['border-2', `${borderColor}`, 'focus:outline-none', 'w-full', 'p-1.5', 'rounded-md'];
+  const classArr = [
+    'border-2',
+    `${borderColor}`,
+    'focus:outline-none',
+    'w-full',
+    'p-1.5',
+    'rounded-md',
+    'mt-4',
+    'mb-7',
+  ];
 
   return <input ref={ref} type="text" className={classArr.join(' ')} {...prop} />;
 });

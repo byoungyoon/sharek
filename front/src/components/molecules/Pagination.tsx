@@ -92,7 +92,7 @@ export const Pagination = (props: PaginationProps) => {
   ));
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center m-7">
       {currentPageArray[0] !== 1 && <PreNextDiv label="이전" onClick={preBtnFn} />}
       {result}
       {currentPageArray[currentPageArray.length - 1] !== endPage && <PreNextDiv label="다음" onClick={nextBtnFn} />}

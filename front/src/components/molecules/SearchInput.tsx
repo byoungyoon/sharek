@@ -24,7 +24,7 @@ export const SearchInput = (props: SearchInputProps) => {
   return (
     <div className="relative tablet:w-full laptop:max-w-lg desktop:max-w-lg">
       <div className="absolute top-2 right-2">
-        <Search className={borderColor} width="24" height="24" />
+        <Search className={`${borderColor} mt-4`} width="24" height="24" />
       </div>
       <Input ref={target} theme={theme} style={{ paddingRight: '2.3rem' }} />
     </div>
