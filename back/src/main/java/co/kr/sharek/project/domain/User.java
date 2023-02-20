@@ -77,6 +77,10 @@ public class User extends Base{
     @Comment("수정 날짜")
     private LocalDateTime modDt;
 
+    @Transient
+    @Setter
+    private Long rank;
+
     @Override
     @PrePersist
     public void prePersist() {

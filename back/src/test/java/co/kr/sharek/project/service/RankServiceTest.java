@@ -1,30 +1,16 @@
 package co.kr.sharek.project.service;
 
 import co.kr.sharek.config.security.entity.Member;
-import co.kr.sharek.project.domain.User;
-import co.kr.sharek.project.repository.RankRepository;
 import co.kr.sharek.project.repository.RankRepositoryTest;
-import co.kr.sharek.project.repository.RankSummary;
 import co.kr.sharek.project.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,7 +20,6 @@ class RankServiceTest {
 
     @Autowired
     RankRepositoryTest rankRepositoryTest;
-    RankRepository rankRepository;
     @Autowired
     RankService rankService;
 
