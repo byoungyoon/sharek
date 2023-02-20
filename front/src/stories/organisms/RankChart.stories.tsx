@@ -2,7 +2,7 @@ import React from 'react';
 import { TableColumnTypes, TableDataTypes } from '@components/molecules';
 import { RankChart } from '@components/organisms';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { RowData, ColumnData } from '../../data/table';
+import { RowData, ColumnData } from '../../data/rankTableData';
 
 export default {
   title: 'organisms/RankChart',

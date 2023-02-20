@@ -1,7 +1,7 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@components/atoms';
 import React, { Fragment, useMemo } from 'react';
 
-interface DefaultTableProps {
+export interface DefaultTableProps {
   /**
    * column 노출 여부
    * @default true

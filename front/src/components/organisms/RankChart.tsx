@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { Pagination, DefaultTable, TableColumnTypes, TableDataTypes, SearchInput } from '@components/molecules';
+import {
+  Pagination,
+  DefaultTable,
+  TableColumnTypes,
+  TableDataTypes,
+  SearchInput,
+  PaginationProps,
+  DefaultTableProps,
+} from '@components/molecules';
 
 export interface RankChartProps {
   theme?: 'gray' | 'orange';
-  pagenationOpt: {
-    perPage?: number;
-    total?: number;
-    pageRangeDisplayed?: number;
-  };
-  tableOpt: {
-    header?: boolean;
-    height?: string;
-    columns?: Array<TableColumnTypes>;
-    data?: Array<TableDataTypes>;
-  };
+  pagenationOpt: PaginationProps;
+  tableOpt: DefaultTableProps;
 }
 
 export const RankChart = (props: RankChartProps) => {

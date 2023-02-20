@@ -5,17 +5,25 @@ import { Avatar } from '@components/molecules';
 export default {
   title: 'molecules/Avatar',
   componet: Avatar,
-  argTypes: {
-    isAvatar: {
-      options: ['none', 'avatar'],
-    },
-  },
+  // argTypes: {
+  //   isAvatar: {
+  //     options: ['none', 'avatar'],
+  //   },
+  // },
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
 
-export const None = Template.bind({});
+export const NoneLarge = Template.bind({});
 
-None.args = {
+NoneLarge.args = {
   isAvatar: 'none',
+  avatarSize: 'lg',
+};
+
+export const NoneSmall = Template.bind({});
+
+NoneSmall.args = {
+  isAvatar: 'none',
+  avatarSize: 'sm',
 };
