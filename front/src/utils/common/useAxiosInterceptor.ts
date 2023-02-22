@@ -1,5 +1,5 @@
 import { CustomAxios } from '@services/index';
-import { AxiosError, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
+import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 import { useStorage } from './useStorage';
 import { AlertType, useAlertOpen } from '../zustand/useAlert';
@@ -7,7 +7,7 @@ import { AlertType, useAlertOpen } from '../zustand/useAlert';
 export const useAxiosInterceptor = () => {
   const { setOpen, setAlert } = useAlertOpen();
 
-  const requestHandler = (config: AxiosRequestConfig) => {
+  const requestHandler = (config: InternalAxiosRequestConfig) => {
     if (!config.url?.startsWith('/api')) {
       const { getItem } = useStorage;
       const user = getItem('user');
@@ -15,10 +15,7 @@ export const useAxiosInterceptor = () => {
       if (user == null) {
         setOpen(setAlert(AlertType.INFO, '로그인이 필요한 서비스입니다.'));
       } else {
-        // eslint-disable-next-line
-        config.headers = config.headers ?? {};
-        // eslint-disable-next-line
-        (config.headers as RawAxiosRequestHeaders).Authorization = `Bearer ${user.token}`;
+        config.headers.Authorization = `Bearer ${user.token}`;
       }
     }
 

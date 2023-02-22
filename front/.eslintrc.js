@@ -39,6 +39,7 @@ module.exports = {
     'react/require-default-props': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'class-methods-use-this': 0,
+    'no-param-reassign': 0,
   },
   ignorePatterns: ['.eslintrc.js'],
 };
